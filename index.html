@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>TikTok Chat Skript – Media Sales Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg:      #07091a;
+    --bg2:     #0c1025;
+    --bg3:     #111830;
+    --gold:    #e8c84a;
+    --golddk:  #b89c28;
+    --text:    #ffffff;
+    --muted:   #8090b0;
+    --border:  #1c2540;
+    --border2: #232d4a;
+    --green:   #2ecc71;
+    --red:     #e74c3c;
+    --col-a:   #7ab0f8;
+    --col-b:   #c090f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ══ HEADER ══ */
+  header {
+    background: linear-gradient(180deg, #0a0d22 0%, #080b1c 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  /* Real logo icon wrapper with gold glow */
+  .logo-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: #090a14;
+    border: 1px solid rgba(232,200,74,0.3);
+    box-shadow: 0 0 20px rgba(232,200,74,0.25), 0 0 7px rgba(232,200,74,0.15);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .logo-text-block {}
+  .logo-name {
+    font-size: 20px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+    line-height: 1.1;
+  }
+  .logo-tagline {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ══ TABS ══ */
+  .tabs-bar {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 73px;
+    z-index: 100;
+  }
+  .tabs-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 32px;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 14px 20px 12px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: 44px;
+  }
+  .tab-btn:hover { color: var(--gold); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ══ CONTENT ══ */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 36px 32px 80px;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ══ SECTION HEADER ══ */
+  .sec-head {
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sec-head::before {
+    content: '';
+    width: 3px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .sec-head h2 {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .sec-head span {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ══ QUALIFIKATION ══ */
+  .age-bar {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 7px 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .age-bar span { color: var(--muted); font-weight: 500; font-size: 10px; }
+
+  .qual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .qual-box {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 11px 13px;
+  }
+  .qual-box-title {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .qual-box.yes .qual-box-title { color: var(--green); }
+  .qual-box.no  .qual-box-title { color: #e05050; }
+  .qual-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 600;
+    color: #c8d4e8;
+  }
+  .qual-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .qual-box.yes .dot { background: var(--green); }
+  .qual-box.no  .dot { background: #e05050; }
+  .qual-tag {
+    font-size: 8px; font-weight: 800; padding: 1px 5px;
+    border-radius: 3px; margin-left: 4px; letter-spacing: 0.5px;
+  }
+  .tag-low  { background: rgba(37,99,235,0.12); color: var(--col-a); border: 1px solid rgba(37,99,235,0.2); }
+  .tag-high { background: rgba(232,200,74,0.1); color: var(--gold); border: 1px solid rgba(232,200,74,0.18); }
+  .qual-note { margin-top: 6px; font-size: 9px; color: var(--muted); font-style: italic; }
+
+  /* ══ STEP CARDS ══ */
+  .steps-wrap { display: flex; flex-direction: column; }
+  .step-card {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .step-top {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+  }
+  .step-num-badge {
+    background: var(--gold);
+    color: #07091a;
+    font-size: 14px;
+    font-weight: 900;
+    width: 46px;
+    min-width: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+  .step-num-badge.b-color { background: var(--col-b); }
+  .step-num-badge.a-color { background: var(--col-a); }
+  .step-title-area { padding: 12px 16px; flex: 1; }
+  .step-title { font-size: 13px; font-weight: 800; color: var(--text); letter-spacing: 0.2px; }
+  .step-subtitle { font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 1px; }
+  .step-body { padding: 18px; }
+
+  /* connector line */
+  .step-line {
+    display: flex;
+    justify-content: center;
+    height: 28px;
+    position: relative;
+  }
+  .step-line::before {
+    content: '';
+    width: 1px;
+    background: var(--border2);
+    height: 100%;
+    display: block;
+  }
+  .step-line::after {
+    content: '▾';
+    position: absolute;
+    bottom: -2px;
+    color: var(--border2);
+    font-size: 11px;
+  }
+
+  /* ══ BUBBLES ══ */
+  .msg-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .msg-group:last-child { margin-bottom: 0; }
+  .msg-row { display: flex; flex-direction: column; gap: 3px; }
+  .msg-label { font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); padding: 0 2px; }
+  .msg-row.you .msg-label { text-align: right; }
+  .bubble-wrap { display: flex; align-items: flex-start; gap: 8px; }
+  .msg-row.you .bubble-wrap { flex-direction: row-reverse; }
+  .avatar { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 1px; background: var(--bg3); border: 1px solid var(--border2); }
+  .bubble {
+    max-width: 84%;
+    padding: 10px 13px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    position: relative;
+  }
+  .msg-row.lead .bubble {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: #c0cce0;
+    border-top-left-radius: 2px;
+  }
+  .msg-row.you .bubble {
+    background: rgba(232,200,74,0.05);
+    border: 1px solid rgba(232,200,74,0.15);
+    color: #e0e8c8;
+    border-top-right-radius: 2px;
+    padding-right: 52px;
+  }
+
+  /* copy button */
+  .copy-btn {
+    position: absolute;
+    top: 6px; right: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.15s;
+    opacity: 1;
+    pointer-events: auto;
+    font-family: sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    min-width: 32px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .copy-btn:hover { background: rgba(232,200,74,0.12); border-color: rgba(232,200,74,0.3); color: var(--gold); }
+  .copy-btn:active { background: rgba(232,200,74,0.2); border-color: rgba(232,200,74,0.5); color: var(--gold); }
+  .copy-btn.copied { color: var(--green); border-color: rgba(46,204,113,0.3); background: rgba(46,204,113,0.07); font-size: 11px; }
+
+  /* ══ BRANCH SPLIT ══ */
+  .branch-split { margin-top: 14px; }
+  .split-label-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .split-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: block;
+  }
+  .split-label.a { background: rgba(37,99,235,0.1); color: var(--col-a); border: 1px solid rgba(37,99,235,0.2); }
+  .split-label.b { background: rgba(140,80,200,0.1); color: var(--col-b); border: 1px solid rgba(140,80,200,0.2); }
+
+  .branch-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .branch-col {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #a0b0c8;
+  }
+  .branch-col h4 {
+    font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 7px; padding-bottom: 7px; border-bottom: 1px solid var(--border);
+  }
+  .branch-col.a h4 { color: var(--col-a); }
+  .branch-col.b h4 { color: var(--col-b); }
+  .branch-col p { line-height: 1.55; }
+  .branch-col em { color: #d0e0f0; font-style: normal; font-weight: 600; }
+  .branch-next {
+    margin-top: 8px; font-size: 10px; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .branch-col.a .branch-next { color: var(--col-a); }
+  .branch-col.b .branch-next { color: var(--col-b); }
+
+  .merge-row { display: flex; justify-content: center; margin: 14px 0 0; }
+  .merge-pill {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--gold); background: rgba(232,200,74,0.06);
+    border: 1px solid rgba(232,200,74,0.18); border-radius: 20px; padding: 4px 14px;
+  }
+
+  /* ══ NOTICE BOXES ══ */
+  .notice {
+    border-radius: 7px; padding: 10px 14px; font-size: 12px; font-weight: 500;
+    display: flex; gap: 9px; align-items: flex-start; margin-top: 12px;
+  }
+  .notice.gold  { background: rgba(232,200,74,0.05); border: 1px solid rgba(232,200,74,0.18); color: #e0d080; }
+  .notice.red   { background: rgba(231,76,60,0.05); border: 1px solid rgba(231,76,60,0.18); color: #f0a098; }
+  .notice.blue  { background: rgba(37,99,235,0.05); border: 1px solid rgba(37,99,235,0.18); color: #90b0f0; }
+  .notice.grey  { background: rgba(255,255,255,0.02); border: 1px solid var(--border2); color: #8898b8; }
+  .notice-ico   { flex-shrink: 0; margin-top: 1px; }
+
+  /* hilfe jump button */
+  .hilfe-jump {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(231,76,60,0.07); border: 1px solid rgba(231,76,60,0.22);
+    color: #f09090; border-radius: 6px; padding: 5px 11px;
+    font-size: 11px; font-weight: 700; cursor: pointer; margin-top: 8px;
+    transition: all 0.15s; letter-spacing: 0.5px; font-family: 'Montserrat', sans-serif;
+  }
+  .hilfe-jump:hover { background: rgba(231,76,60,0.14); color: #ffb8b0; }
+
+  /* intern box */
+  .intern-box {
+    background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px;
+    padding: 14px 16px; margin-top: 14px; font-size: 12px; color: #8898b8;
+  }
+  .intern-box strong {
+    display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px; font-weight: 800;
+  }
+  .intern-box ol { padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+
+  /* ══ DIVIDER ══ */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  /* ══ HILFE CARDS ══ */
+  .hilfe-card {
+    background: var(--bg2); border: 1px solid var(--border2); border-radius: 10px;
+    margin-bottom: 9px; overflow: hidden; scroll-margin-top: 130px; transition: border-color 0.3s;
+  }
+  .hilfe-card.highlight { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(232,200,74,0.12); }
+  .hilfe-header {
+    display: grid; grid-template-columns: 44px 1fr auto;
+    align-items: center; cursor: pointer; user-select: none; transition: background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: 44px;
+  }
+  .hilfe-header:hover { background: rgba(255,255,255,0.015); }
+  .hilfe-num {
+    background: var(--bg3); border-right: 1px solid var(--border);
+    color: var(--gold); font-size: 13px; font-weight: 900; text-align: center;
+    padding: 14px 0; align-self: stretch; display: flex; align-items: center; justify-content: center;
+  }
+  .hilfe-title-wrap { padding: 11px 14px; }
+  .hilfe-einwand { font-size: 13px; font-weight: 700; color: #ddd0c0; }
+  .hilfe-kontext { font-size: 10px; color: var(--muted); margin-top: 2px; font-style: italic; font-weight: 500; }
+  .hilfe-chevron { padding-right: 14px; color: var(--muted); font-size: 13px; transition: transform 0.2s; }
+  .hilfe-card.open .hilfe-chevron { transform: rotate(180deg); }
+  .hilfe-body { display: none; padding: 14px 16px; border-top: 1px solid var(--border); }
+  .hilfe-card.open .hilfe-body { display: block; }
+
+  /* antwort box */
+  .antwort-box {
+    background: rgba(232,200,74,0.03); border: 1px solid rgba(232,200,74,0.13);
+    border-left: 3px solid var(--golddk); border-radius: 6px;
+    padding: 11px 13px; font-size: 13px; font-weight: 500;
+    color: #d8e0b8; white-space: pre-wrap; position: relative; padding-right: 52px;
+  }
+  .antwort-label {
+    font-size: 9px; font-weight: 800; color: var(--gold);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+  }
+  /* copy on antwort-box, always visible */
+  .antwort-box .copy-btn { opacity: 1; pointer-events: auto; }
+
+  /* follow-up */
+  .fup-row {
+    display: grid; grid-template-columns: 140px 1fr;
+    border: 1px solid var(--border2); border-radius: 8px; overflow: hidden; margin-bottom: 8px;
+  }
+  .fup-when {
+    background: var(--bg3); border-right: 1px solid var(--border);
+    padding: 11px 13px; font-size: 11px; font-weight: 700;
+    color: var(--gold); display: flex; align-items: center; letter-spacing: 0.2px;
+  }
+  .fup-msg {
+    background: var(--bg2); padding: 11px 13px;
+    font-size: 12px; font-weight: 500; color: #a8b8d0;
+    position: relative; padding-right: 52px;
+  }
+  .fup-msg .copy-btn { opacity: 1; pointer-events: auto; }
+
+  /* type grid */
+  .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .type-card { background: var(--bg3); border: 1px solid var(--border2); border-radius: 8px; padding: 14px; }
+  .type-card h4 { font-size: 12px; font-weight: 800; color: var(--gold); margin-bottom: 6px; }
+  .type-card p { font-size: 12px; font-weight: 500; color: #7888a8; line-height: 1.55; }
+  .type-card em { color: #a8b8cc; font-style: normal; font-weight: 600; }
+
+  .todo-mark {
+    background: rgba(232,200,74,0.04); border: 1px dashed rgba(232,200,74,0.25);
+    border-radius: 6px; padding: 9px 12px; margin-top: 10px; font-size: 12px; color: #c8b030;
+  }
+  .todo-mark strong { display: block; margin-bottom: 2px; color: var(--gold); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* sub-step inside a branch */
+  .sub-step {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .sub-step-head {
+    padding: 9px 13px;
+    border-bottom: 1px solid var(--border);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .sub-step-head.a { color: var(--col-a); }
+  .sub-step-head.b { color: var(--col-b); }
+  .sub-step-body { padding: 13px; }
+
+  @media (max-width: 700px) {
+    /* Header */
+    header { padding: 8px 12px; }
+    .logo-img { width: 40px; height: 40px; border-radius: 10px; }
+    .logo-img img { width: 40px; height: 40px; }
+    .logo-name { font-size: 14px; }
+    .logo-tagline { font-size: 8px; letter-spacing: 1.5px; }
+    .logo-block { gap: 10px; }
+
+    /* Tabs */
+    .tabs-bar { top: 55px; }
+    .tabs-inner { padding: 0 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .tab-btn { padding: 11px 14px 9px; font-size: 11px; letter-spacing: 0.5px; }
+
+    /* Content */
+    .content { padding: 14px 10px 60px; }
+    h1 { font-size: 26px !important; }
+
+    /* Steps – keep layout, just reduce padding/font */
+    .step-num-badge { width: 36px; min-width: 36px; font-size: 12px; }
+    .step-title { font-size: 12px; }
+    .step-subtitle { font-size: 10px; }
+    .step-body { padding: 12px 10px; }
+    .step-line { height: 18px; }
+
+    /* Bubbles – slightly smaller but keep layout */
+    .bubble { font-size: 12px; }
+    .msg-row.you .bubble { padding-right: 40px; }
+
+    /* Copy button – larger touch target */
+    .copy-btn { padding: 4px 8px; font-size: 14px; top: 4px; right: 4px; min-width: 28px; min-height: 24px; }
+
+    /* Section heads */
+    .sec-head { margin: 28px 0 12px; }
+    .sec-head h2 { font-size: 11px; }
+
+    /* Hilfe cards */
+    .hilfe-num { width: 36px; font-size: 12px; }
+    .hilfe-einwand { font-size: 12px; }
+    .hilfe-body { padding: 12px 10px; }
+    .antwort-box { font-size: 12px; padding: 10px 40px 10px 12px; }
+
+    /* Follow-up rows – keep side by side but smaller */
+    .fup-when { font-size: 10px; padding: 8px 10px; min-width: 100px; }
+    .fup-msg { font-size: 11px; padding: 8px 38px 8px 10px; }
+
+    /* Notices */
+    .notice { font-size: 11px; padding: 8px 10px; }
+  }
+
+
+  /* Ensure tap works on all elements */
+  button, .hilfe-header, .tab-btn, .hilfe-jump {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  a.hilfe-jump {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(231,76,60,0.07); border: 1px solid rgba(231,76,60,0.22);
+    color: #f09090; border-radius: 6px; padding: 5px 11px;
+    font-size: 11px; font-weight: 700; margin-top: 8px;
+    letter-spacing: 0.5px; font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <div class="logo-img">
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAJ3AnkDASIAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAcIBgkBBAUDAv/EAGkQAAEDAwEEBQYFCBARCwUBAAEAAgMEBREGBxIhMQgTQVFhFCIycYGRFUKhsbIjUmJygrPB0QkWFyQlMzc4U2R0dZKUorQYJic1NkNVZXN2k6OkwtLh8Cg0REVGVFZmhMPTV2ODleKW/8QAGgEBAAMBAQEAAAAAAAAAAAAAAAEDBAIFBv/EADMRAQACAgEDAQYFBAICAwAAAAABAgMRMQQSIUETIjJRYXEFI4Gh8DNCkeEUUrHRFUPB/9oADAMBAAIRAxEAPwCo6IitVCIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiIMs0Ts31vrW31VfpXTtVdqekkEUzoC3zXEZAwSDyXtP2GbXmRiR2z+94JxgRtJ928sIst6vFlndNaLtcLe9/B5pKl8Jd6y0jKyq37W9ptEQaPaHqWAjl1tc6Vn8rPyqu02h3WsS+w2LbWi7H5nmoc/uX/evzLsY2sRNLn7PNRYHdSE/MswsXSj2yWJ8Rr7lb73TgjhWUbPOH28e6fepc0X0ybBXBkGsdJ11ve446+3SioYfuXbrh7CVVbJeOId+zVbumgNd2sZuOjdQUo75LfKB8y8aa1XSB2JrbWxnudTvH4Fsj0ltC2Ya5c1untY08lS7j5M6tkgnHh1byD7gVlj7K+NpEdfcB65y75wVTbq7V5qmMMT6tVXktUBxpaj/JO/EuPJqntpp/8AJO/EtqE9umEMjhcKtrmloHFveM/FXSrrPcJZWsgutQz6tJz3fRwN0clzHX/R1/x/q1eCnqDwFPMfVG78S+kNvuExIhoKuTAydyBxx7gtmp0vcqgteb7XRcMFscm7nB8Avds2moqKonqJblcqrrntcGT1LnNjwMYaO7t4ruvWd08Ithivq1WV1DW0MjY66jqKV7m7zWzRFhI7wCOS662AdK7ZmdebOp6mhpzLqLTwdPRuAy+ogIy6PxJA4fZNPetf/bywtdb90bU2jQiIu3IiIgIiICIiAiLkAnkCc8B4oOEUn6A2C7T9ZRMqaDT76KjkAcypuDuoa9p7Wg+c72BTjpboe22jhirda6zJhY3NRFRxiFgPd1jyffgKqc1InTqKTKn54c+C5YC92GAvPc0ZPyK7ZpeiPoKOSCqqNP3Kpid5xe59wlyOzzQRlfmLpNbB7CDHY9NV+BwBpbRFED/CcCuJz64iXUUU2pbFfKtodS2a5TtPIx0kjvwL0YNC61n3ep0lfH73LFDJ+JWxrOmNoksMdFp+/RdzjDDw8cbyx6s6UjayTNHqGvtufRE9mieB7Q4qm/V3jiktGPpO/wDuj/KvTNme0R7Q5uiL/gnA/OTlxLs02hxDMmh9QtH7gf8AiVhqTb1qWpdml2m2d+eTZ7cyL6QHzrKLHtj2hEh3wnpS8M7g3cJ9rXH5lRb8RmvxVaY/CslvhmJ/VUOXRmsIiRJpS+NPcaCT8S+B0vqYO3Tp27h3caKTPzLYFYdrFwnaG3rS88I/ZaGZs7f4JAPzrOrTcrTfgHW+6SiQjjHvmORvracFVx+LRM6iqrJ0GTF8fhrG/KlqrP8AYzef4jJ+Jfl+ltTsduu05eAeWDRSc/ctoVbbLgyiqTSXKqdMYt2HMud13fxXn32236SjvTKC51sUslIxtE5rxmOXjvObkc+Xgr/+fOvgZ5wx82sp2mtRjnp+7D/0cn4l8JrPd4Mma1V8QH19M8fOFsZulNrikrKilobxXPi+EJxFLLHHI4Qih34xkt5dcD49iiu+bRNqtkq3QVFx39yKB7nS2aMg78TXO5AcnEt9i5/+TrHNXcdJNvhlS+SGaMZkikj+3YW/OF+AQRkEEeCuENvWtaKojhuOmNPX+J+S4eTOp34HtcOPqWD9OfT1utmrdOXq12qmt0V1txdJHBGGAyNIJyB24cFp6fq65p8K8uC2LlXVERa1AiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiD6QybrTG7jE7m3u8V8mxiGpYOYEzSPELlH/pTH8914HsVN6+sL8dvL17dY4rjLPmYwyR3GGBzwM7rZXFu9jwIWc6U2w7WdmdQ2joNRT1dAwvY2kr81EHmvLSAHHeZxbyBCxy070UmoS0+gaSpHsmac/KVKM2lKa+XiqtU5YxjtSvt7nOHoNqmNcx/rbIQ73rLkzRWfPDZTFGSPKR9B9MazV25R640vPbnHG9V21/XR5HaY3YcB6i5WF0TrrRGto2VOltS2+5HJcYmS7szc98bsOHuWse/Warst7rbJcoTDWUcz4ZWkY85pIyPDhlfC2unpatlRSzyQTN9GSNxa9p7wRxC4vjpbhzOLXEttEbMMxjvX3Z6OFSPYH0mbxpxlNa9olXU3e0SDcZXlm/U0pHAb2OMjPXlw+RXSs1xortaqW6W6pjqaSribNBMw5bIxwyCPWFT2zSVNqzHL83NroS2ujYXuiBEjRzfGeY9nP2Y7VQfpebJjobVx1NZogdN3uZ0kW4PNppnec6P1HiR7QtgvNYRtI0ZbtY6RumjbkA2kuEbnUkm7xp5hxaR6necPDIWjFl7J+iqa7au0Xray09ctKaouGnbvD1VbQTuhlGOBI5OHgRgj1ryV6KkREQEREBEXt6SsrbtWF1VM6nooiOtlaPOJJ4Mb9kfk5rm9opXcuorNp1D66H0hedX3I0lria2KMAz1Up3YoGntJ7+4DiexWj2DbOdM2Krmr7Zb4blWUQzVaiu7Q2mpSAd8RRnhy7XEnvwvM2L6Q/LJBIYs2bRdrcW1UsJwZ5AMuYx3Nz+xzzyBwOJ4dDb9rQV1t+Cac/A2i6AiKnt9L5rqyQcmuPb3kcd3mcnivE6jqsma/s6zMb+T0sfTUpG5Zdr/AKSVLbuvtWzuBt7qI/MnvlzO5RxkHHmM4bw7uQ9arNtE15qDWNQZNT6oul+O8S2HrDDSRH7Bg4EeoD1rFrrcZbhLvPa2KFv6VTs9CMd2O0+J4ldLtyvR6fpa4q+GXLmrvVYfoOa0YZBCz7nJ95QyOdwe2Nw7iwL8otXZVR7SzjqmEHq+H2KRR780LMHjIG+88lz4ruWmnmq7rRxRxukcamIZa0nm8AZVd6ajcLsV+6Yh2qeyCrYxzX7hdXspOIOG73In3L06DZ9qCsqertToZpXXU2uJom3HPnDS7hnGBhp4rILNaZhZr1UOaQ2ludJKT/8Am3D86zDSdSaLVtLTO5x7Qw1w+2ie38Kw0y929N9qdvKJmV+vNPiCRlfeKNs0Qmid1r918ZJAcOOMEtcPYvWpdsG0SnjEb766YNOWuljaXj1OwCPep7o9PR3nT8MBY0h2gqsx5H9tpa6RzfaAce1d/UHR6NZZbbe9K1ED6mrhZJ5JPA10bsxhxBzwPHPcs1+ox71ekLce9ai8wjTQHSt2lablZDejSaloWu85lU3q5g3ubK3/AFg5W12L7bdFbUKfqrVVPorwxm9La6sgTADm5hHCRvi3j3gKlOurRYLDXfB2tNB19iq94gVdoqCI3kDtilyM9uA4LGafT1ufcYK3ROsmfCEbg+miqWmhqWOHEbridwu8Q4LXE0vXjUfsy5MHn3bRttCmbzdxGJGu9nL8a86tt9LMzqpoRI1zJIHAjgWu44VZth/SXrqGui0btjjdR1QxHDeHs3Qe4TtHAf4QcOWQOatO4xzQCaF7JGPaHscw5Dh2EHtBBWfJi7fspjdZ1PLBtUbP9PXG1x1BomQ1NPGPPjAGeAzn1qEPyQ6gLdO6JrGN82KaogJ8CxhH0SrSyxCSnlj7HMKrx0+qY1Gx+yVrRlsFzjBPdvMcPwKejiK5NuctpmsRKjiIi9llEREQIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiB2rh/6Q8d26fnXKYJBb3hc2+F3SfeZxa6fe/LG8cjaaZ/tJYp1p4xFd9UVA4Gk1TZ5c92RDlQhZ34odQknibPQt97mKbXvB/NMkBz1N8th9WBD+JeR1Mc/o9PDbUPH6TGiWV9JrbVVBEfLdO6l3KrA9KkqYo5AT9rK4+x57lXykHWwidnEBwDgPilbALJbKG+6v2w2C5M36KvioRMAOTZKMtJHiMAjxCovqfT1w2cbRrhpfUETnMp5eqlLRgTQu4tlZ624cPcrcNu6sxHMK+7VtS6pha6mpGEDBeT68ZVqOhttZFI6PZvf592HrjHZp3u4BxG/5OSe/JLfaO5VnutDJba2jo5HB4LZJGSNPmyxuGWPHgQfflfGCofR3GaqjL2vp6+E7zDhzcsIyD3jGfYmu6FmSsT4ltSa7PHkvhXwCemczf3HDzmP+scORUY9GradFtC0b1dbKz4btobFWDl1zT6E4Hc4c+4gqVjjtHBcTG4Y5jU6VI6bezcXiyR7S7VSbtdbx5Ne4YxzYDwk8d0kce1pB7FTtbWdU0lMBJJWRNltldEaO5ROAI3HDda8+rOD4HPYtce3fZzX7M9oFZY6hjnUEjnTW6o7JYCeAz3t9E+K3dNk7q9s+inJHlgSIi0qxERB2LdSSVlU2FnAc3O+tHepP2f6Rq9VajtOkrNvROq5twS4z1MY86Wd3qb8pAWIadgbBRgnhJL57z4cd0ertKuD0JdJxR227aznY11RNJ8H0jjzZG3D5Pe8t/grz8tva27fSGylfZ17vWUgausFDp3RNBo+wxto7fTwiFm8eDWgZL3nt+M5xPPjla/tpmpfyy6mnmpnSNtlM90NDG48o88XH7Jx84n2divh0qrj8EbJNQXEEh5pJKWMjsfJhg+Qla58YwB3LjosEe0vkn9E58vuRSBERemxCInNB+oo5JpGxQxPlkeQ1rGjLnE8AAO0kkD1lWQ2ebK66sfb7TYoYpay31TTXVjhmJ9dugyuc7mY6dha1rR6Ujiom2VUb6aon1OIusqKI9Xa4yDl9W7Aa8d4ZkH7YtWxPZdpSn0boy22aNpMtPTNE8h9KSZ3nSPJ7y4n3BeX1mabT7Ok8ct2CIxV9rMeZ4QBt72b2LZpsLvdbT1lTU11TJSQl0m61rnde1+Q0DOfNceJUFyVpbr58rDjOtaScfdA/jU9fkhN13NE2GyNkw6oq5KpzfsY2YHyvVanVH9M/Wg8r7bpP5Cq6SsRSdfNda1rebT5WT2QzeVfBNE87zvI9S0WPsRNE4D5Spr2P1DqzQGlpickW9pJPg0NUEbGnFmv7JS5xvXHUkePZEfwKadgEm9s+08z622n784fgWTN4yQnJqKyjXp7aZZX7PbXeKeNramK7wwvkx8WRrmDPtIVJr1b6m0XittNYAKijqH08oHEbzHFp+ULY30qaNtbsOvZIy6nkpKhvgWVMZ+bKop0gqYUe2/WMIGALrK8AdzsO/CvX6O26drDfcedvMtOoIK6hZZNUB1VRt4U1U7zpqU+B7Y/D3Ke+jptmr9nNypdEa3rXVOlaghluuDzveQk8gT2wn+Tz5ZCq53LI9OXOOpozYro4OppOED3f2p3d6l1mw68xwtxZIyR2X/y2mQvY9rZI3texw3mua4EOaeII7wVCnTTo3VXR4uW4wnyKup5j4NEmCfc5Rx0PNrVRabqzZPq6rc4b2LFVSuzw/7uSew/F7uLe5WF23WVl/2R6qte6XGa2TOaAOO81u8PmWGn5eWEWjxqWr1F+pGuY8sePOHNflexE7hlkREUoEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAXLPTC4XLfSCi3wuq/EzK3vLaG8DPp26gH8tn4lNVE7ese1ecnJF+oQPYW/iUIQ5bSV476Gg+kFNVsz+VLapn/wAQUvybq8zqY3Wf0b8U+YT1oSbG13ak0dlttb8f+mesc6Y2yyPWmz5mrLVT5v1jpusIaPOqaUDefGe8t4vHbzHavU2eyb22Haq76212se6nepmog2SipmuaHtfTtDmu4hw3RwWKLzjvFo+iMkbnbW3s6hOuLA/TLA11+tDH1dmzzqIfSmpfE4y9niHDtXhTbrJ724HIjko5hkfZAf6yyTbVpus2P7eKuOySugjpqhlxtj28N2J53mt9h3meIC9napabfdbHPtMsMbYbdfqTcrqeMcKWta5j8Y7Gvw4j7IEdoWy1opkifS3H3XUn2lN+sOvsZ1hX7PdZfDlK5zo6NlZFPT54VEMcjHujPjuuJHcQFsP0/drffrLRXe1VDKmhq4WzQSsOQ5jhkf71rJqahjampkYAQbsAftKmnIPzKwfQ42iVFruGndJXKci3XigmipWl3mxVMEruWeW+x2PW1verb1iJZrR3+VwJ4Y54XwytD45Glr2kZDgeYKhfbxs1j2h6EqdLOP6P2lpqrLUv9KZg4BhJ/gO8d09qmvOQexeXfqGaqp45qNzY66mf1lO93LPax32LhwPv7FxW3ZO4VctTlbS1FFWTUdXA+nqIJHRyxSDDmOBwQR4YXyVnemjs5DqiLatYKZwoa8iG7QhvnU9QDu7zvWfNPiB3qsXavRpaLRuFMxqRfahgNTWQ07eckgZ718V72z6nFTrCgicMjL3e5jioyW7aTKcde68VelEN0tA7Duq/vRXo6ej2G2F8LcOqBNPMfrnmV2T7gB7FQVgALB2jj8qvf0SLk2v2H2tmRvUdRUUzh3ESFw+Rw9683FO/Ld1Eaq8bpo0k1TsJvzYI3P8AJ6inqJMdjA7ifUtex5ra1rqy0V/s1VZbiD5FdaZ9FORzAePNPrytX2uNO1+kdWXPTd0bu1dvqHQv7nAHg4eBGD7Vr6WdbqxZN+JeMiItSsX0poJqmojp6eMyzSuDI2AZ3nE4A96+azjZXZ6iWrfd2N3ZGEw0ZP7KR5z/ALhufaQqs+WMVJtPosx0m9u1OHRv0TFX6ztVNhstHapd97ictkdF50jx4OlIHqaFc6Xgw578lRP0Z9Mx2nTL7h1W6ZWNhizzEbePy5Cky+1baWj3i4Bz3YXh0mfZzeeZbsvvZIpHopF08735ftHhtsT8stltYx4HIPleXn5A1Q4Hk18j8nIrqF3uGF6+229jU+tdWX1r95klx6uLj8SPzG/I1eJyqJ/3RRFbcFezHEOr/JZjZTMI9sWm4ycB971A33xsU2dH4FmirRGRgst2Mf8A55FX7RM/UbXtLSA4xqm9RZ9cbFP+w1+7aKSHkG0Lsfxh/wCNebnn86I+jq/mj39s9Ebhsm1PStbvONukc0eLRvD5lQXpTxiPb7qktHCSaGUHv3oWFbGdSQNqtNXSmcMiWjlYfawha7elYD+bZcnnnLQ0Mh9Zpo8r0ehtPtNMOWPCK08e1EXq+jOyFstRc7SyrppXx3S2O6xkjCQ/DSCHA88ggH2LYJ0dNfx7TtmNJcaxzX1vVmjubAMATtGHH1PaQ72+C116crjb7xBO79Lc4MkB+tKsx0I7o7T+1fU2i3SOFNXUoraZvZvRkfOx59y8vqcfbuI9PMN8T7SkX/RW/W9EbZrK9W0jHktfNDjwa8gLxlm23rqxtq1iImhrPhifAH23H5VhK9HH5pDDPIiIu0CIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgLkc1wmccfBRPDqvxMwYPzrXeFuoPpNU120H8rm1GMDib/AfcGqEInYiuA/aFCP5TVO1rAdbtpzQPSvkf0GFeV1k6pMx9G/DHmEsbPX7u1Ta/IfiW+3D3UrlNdqdvUNA7sNOz6IUG6AONo+2Z37RoMfxQqbbC7Nrt37ljP8AIC87JPvO7QqZ+SEWYSX+wXuOMb7aB0UjgObRLkZ/hKJNhGpqGKet0RqN+bDfIzA/PHqnngHDuIOHDxAVkem9SMqNMMlcMmK3zOafEPYVR1rix4c0lpByCOwr08eKOo6eaSprl9heLR68sx1PZ7lpi5Xiw3Vg8roq6jbv9krG74ZID2hzS0g+K7tprZKS3aelgldFLFR3d7XtPnNcGuc0jxBaCPUspu4m2rbLfhqiBfqzS8DGXKBg8+toWklsoHa5hJPqJUeWqdzmWKPPAUVfj7psgXeO85K+9zHKy8RWfHE8NjOxPXUOtdIxyyytddKGOGG4Nac/VHQskDx4ODs+vI7FnpGQqA7KNeVeg64X6jLpIxS2eWspw7Anp3x9RK31g7jgewjxV8LDdaG9WemulunbPS1DA+N7e0fjHIjsVVomJ1Ki9dTuGL6ytFvL62hu9O2fTmoI/Jbgxw4QTOG62XwD+DSexwYe0413baNn9y2ba8rdOV7S6Jruto58ebPAT5rh4jkfEFbPq2lhraSakqomSwSsLJGOGQ5pGCCq9dJXZ5NrPQtTaiDNqXTkLq21VDgN+uox6cZPa9o4Hvdun4yuwZey3bPEq7V7o3Hooksq2Thp2gWwO7TIPfG5Yrx5r2tCVraDWVqqnHDW1DQfUeH4Vp6iN4rfaUdPOstXrVLzHWsjdwxI5pCsx0GNWthvV60bUSv/AD7C25UYJ83ejPVzNHj6B9h7lXjaXQG0aomiAwwzvLT2cRvD5ML6bPdWz6J2gWXU1O1z/g26M61jDgyQTMxI32jOPFYem81iYbuojzavybMq2nbU0z4XZAcOfcew+wqtnTE2Ny6usbdbaeow/UFui3a2CIedVwN7QO17eJHaRkKxlnulBeLVSXO21LKmkq4mywysOWva4ZBXYlj3hkHDhyKWvOK3fDHrcaahyCHEEcRwIPMHuRXV6SnRs/LLVVOrdAxQ091eC+stnoR1Lu10Z5Nee0HgfWqY3CkqqCtnoq6nlp6mneY5YZWlr2OHMEHkV6GLLXJG4U2r2vzR08tXVxUsDd6WWQMYPEngrM7IdJmqq6S1wMHVwQNaD3F55+0BzvaFF2xjSprIpNQ1XBhqPg+iGeJkLd6V+O5kZxnvcFb/AGI2SKlgdXmPElQ8S8RybgNYB6mgLxvxTN32jFD0uix9tZySl/T9DFbLPBSRNDWRt5BRL0ltct0tpG5Vsbz1tPTmKADtnky1g9nP2KXKiobDSbxPIZPgqK9M/VZr9U0mmIn5FLmrq8Oz9UeMMafEN4/dLnFE5b1xuYnti2SUJQNfJpO5yOdvFsjXE95J5r03t/PE/wDh6H5gvjZYxJoXUjjzjEDh7XHK7U7d2pkJHOot/wBEFeh/dMfVFJmaxM/JNOlpc6/09Pn0Nb3YE931JisfsXdinofs7c4/54n8KrVo9jptQ0kjedPq+9zZ8BTtKsRsRl36CzPznetYz6ycryOpn8+F8x7iWKhu/Rzs+ujcPkK1z9LIY2yT9/wVQZ/yDR+BbGWHLCD3LXX0vG7m22tj7G2+iH+ZC3dDP5v6MOX4ZREiIvZZXDhlpGcZU4bCNS0Vq2w6N1RVSdXDJb6ikqiOe+yJ/PxPmqEF2qKvqKMDqXbpY5zoz2scW7pI9ipyYu9fiy9kTE+r0tf3Rl711fLzG7eZW1807D3tc7IXhoitrGoiFM87ERFKBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQFw7g0rlfmQ+Y71KLcOq/EyuM/Ubl3+RUP0mqeLQ4CHaUOz4aZn/JNUDNB6u5Y/wC5UP0mKbtPyb9FtLkz/wBbg+6MLyetj8qf0ehh5hLmhxu7Qtr+Ob7Vbn++jKmvThzabaf2nH9BqhfR+BtC2pY+Pp+2O/0RymXSpzZbZ+4IfoBeZf4ll55Qr00yG6Imf3UEo972Kh5GMhXz6aEe9s6uEmM9XQ/PK0Khh4kr2fw7+nP3Ys/EMm2ZavrtD6yob/ROcRC/dnh5iaE8HsI7cjPtWZ7Y9MU2ntdWq52MNfpm+U09baXsOQxkjCXxeBa5x4dxCib1KZtnNbJrrZRX7PHnrL3YHuvGnskZlYP0+nHeS0ucB4eCs6inZf2sfaXWC3dHs5YRbK90lE2He4SWBjD64qnI+irM9DzaRHQMr9MXes3aSa8SRURefNjfJl7W57A4h3tKqdbpDFJC0EjFHNGM92+SPnXu2Ouno7JcpYH7jzXwOa4HiDk/Kqep43Xlpw17/cltF7FjevbTW19rjrbM9kd5t8nlFE53Br3AedE77F480+w9ixXo6a/GttE9TWSl92tchpaok8ZcY3ZPaMA+I8VJp547Fmt71dwz6mlvrDWZt707SWvV777ZqeWGzXp754ongb1LUA/V6Z3c5jycfYkKPGktIc0kOByD4q23TM0Q+1VdTqKljLrFeHtNc1o4UVc0YZUDuDx5ru/j4KpUzHRSOjkGHtOCF6XTZYyY9OM9O2YtXiUtbS426i2bWfV1I3LhCyCpPMtlZ5uT6+I9yjurkL4JpWZDn0dPM0/ZNfjPyrNNiV2pqwXHQd2kDaG9M/O7nf2qcDh6gfwLDrxbquzXK4WavjLKmjp5YHjv3ZAQfVj51k6avsrWxT6eY+0teS3taxlj7T91m+hptbhtFfNs81DUltJV1k0lpme7zYX5y+F2eTXZ3m9gOe9XCByPBaooKp1DdYqtmCYrmcg8i1zRkeo8QrQ9HTpGtohbNIa4m36bqnshur3EuhLScRy94AAw7n2cV1np8lE03G4W8c0Hj2+CifbRsT0ZtFhfUXOk+D7uG4jutIwB47usbyePX7wpRt1bS3CjhrKGoiqaaZgfFLE8OY9p5EEcwuwVlpa1J3CudTyqxJssvGifg2iip/LrHa7VNHFXQAYkqHkl73tHFpOQOOeXNTHo1sdPRwtbgAwsx7gs6koxkvgkMLncwBlh9bT+DC8SutELXF8YbRyDlu8Yj/srPfp5m83rPmWunUR29lnn6wv1HZtOXC8V8nV0VDTSTzuxnzWjl7Tge1ay9TXms1DqGvvlwcXVVdO6aQ9xJzj1AYHsVyOmRqO62LZqdNQ22uPwsR5XXMiJgZC1wO4ZAMZcccO5UmHHl8n/AByXo/huKaxN7R5Z+qvvVY4ZRpMb+ktVRc80sTvc9d+6xYma4fGktp/zYXW0G0PsOp2niPImfTXsXqMb1CwDi91sz/ACnJbWWY/no0Y6/lRP85Sds946pq4uxt0v0w9fUMCnPYBN1tjsEgPO3AfOoS2dRt/LU93MyVl++9MUwdGx3WaSssuc9XTBvykLyOq/qdy/midY1rz6ZDd3bvcR+0KP70FsKj5la+emcP6u9ae+20R/zQW38NneX9Hn5/hQwiIvdZBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQF+Zf0t5+xK/S4kGYnepRbh1X4mXU7d8XH9zW4e9zFLuk5es0ptMqc/wDXLx7mqJbS0PZcM/sdrA/htUn6Lf8A1Ldo0x5uv0o+ReV13jFP6N2KfKddHHO0HaX46YtZ/wBFcpl0ec2O1k/3Ph+g1QzowY15tJP/AJUtZ/0RymPRZ/QO1D+90P0GrzJ83dzO4RP0x2b2y6/O+tt8Z/0hqoCtgnTBGdlWpT3W2I/6Q1a+17X4f8E/djzcR9henpW+3HTOoqC/2mXqq2gmE0LscCRzafAjIPgV5iLbaImNTwprMxO4SptnslC80G0LTUe7YNQsfURRtHCkqCQJ6Y/auOR4FYdb5R8DFh49dXw59xWYbEL1S3Sgueyy/wArRa7+Q+3zPGRR3AD6k8dwf6LlhdwoquySfBlfC6GqpbmIpY3cCHM4H/jxXmzSaz7KfT/w9PHbur3/AM2lbYzrafRuvrfdRK/yNlVcXVcDT+nRdXGXDHaRu7w8Qr826upLnQQXChmbPTVDBJG9p4OBGR861iWeUSX21MefMlralr/U8Bp+dWc6Km0/yWW16VvNQBDcad0UDnnhHVwu6tzT3CRoYfth4qi8TSE5qd/vQsPrix0OorBWWevgZNTVcZjexwyDla4NsWha/QurZrTUB8kDsvo5iP0yL60n65vI+oLZtMC5hDh4qJOkTsxpdeaRkbG0MuUQMlLN2slA+Y8isuDqJ6fL3TxPJSsZKdk/o13wyPilZLE5zHscHsc3gQRyIUs3kx7S9HO1FSMaNUWmmMdzhaONVDjhKB3jHZ2Z8FFtzo6m3109HWQugqIZHRyxuGCx4OCF3NJ3+5aZvlPd7VMI6iE8ncWSNPpMcO1pHNe1mxzliL4+Y4/9M2G/sbzS8eJfGtePz8AQQ2ojkB7+xc1AHXAjn1xwfYs71Zpu26l07Xa10LSu6lzWm72pnnS26XeyXgc3Qu7Hdij+R43mOznMhP8AJVdbd6+9OyfolTYttl1boC4WKiorgZLJuzGqoJ8vieDI45Ha13AAEe3KuLsb26aO2lCKkpJZbXeXNO9b6vAc8j0ureODwPDB8FrphP1ShHdSE+9xXctdXPRWx89LNJFMwTbj2OLXMOQcgjiCoy44lXqt22AkHgF+WAb7+GQce1Ud2V9JTW1sltFJe5Ir3R1L6emcKrhIwl5Y54kHEnGDh2fYrUbOdrWitcBkVoubY657XnyOp+pzYY8sJAPBwyOzPArPFZidSrtSYhl9dbY543sbu9W8YfDIwSRPHcWHh7lAG1ro26E1HNLXW+mqNJVjt5zqiiiEtHI49roxxZ7AArGZyDwXOAeefWrK5LVnxLiYieVHaHo366sNh1DPQVFp1DFU0rW0xt0+XPIdkjdcBg47ASsD1BZ66jvtroq6kmpZ2VdugfFMwtc1wGDkHjwWwyeyUEkrp4o3U1QQfq1Oerd7ccD7QVj2rdIUl9ghjvtot2omQOD4XTsENTE4cnMeOGfVuqu+7X7mnHn7a9mlT9mMnWaoomg/plVeyPumtA+ZSz0XZN7QVOe2NoH+dcF9ItjFLadTUVx0vcp4zTvqXvtd0G7K4zNAO5LydxHj611Oj3RXXTNuq9O6goKi3XCFoPUztwXNEpO80jg4YPMFeb1VbRO2uL0muqrBM4b3tWvnplkO23TO+utNCf8ANLYK8gQyvHHDCfkK18dMT9WME8/gW35/yS3/AIbX3/0ebnnwhtERe2yiIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgI4ZicPEIuzSxB9PI7Gd17R8jvxLjJOqu8ce9DJ7L+l1hPIxWs/5xqk3R4xsf2jHtbqCT5QoztxEdLVHupLY7/OtUqaZiLNmO1OHH6XfifeCvN63zin9G3FynDSBH5edpZ7tKWz+aOUw6M/rJaf3tg+g1Q5pLhrXaZ/ila/5o5TLo3+s1o/eyH6DV5mve/wAJmfCL+l6M7KtUeFriP+kBa9zzWwvpcjOyjVZ/vTF/OAteh5lez0HwSyZvQREW9S5Y5zHtexxa5hDmkHBBHEFSTtDqmay0nRa5pmsFwgfHT3yJox9Wa3DJ8dzwME94UarJ9m1/prFfjHdIjPZbjGaS5w/XRO4bw+yZ6Q9Sy9TSdReOYbOkyRWey3EurbZ+rudC8nzonl58C5wx8yyK0zzR17xDI5r23Ctawg4LS6ISAg9h3mAhePrayTaY1xUWmSQTRNMb6WdvozwuwY5B4Fp+ddi3z9VfS93oi9xg+p7HNWetYvH3arW7J+zYLsS13T650bTySztN3o4IBXx8iS+MOZJjsDxx9YI7FnUkQkjcx4GCtemy7XN40DV2vVdA58pp4RTVtNnAqaeKQsew+IBaQewgLYDpq8UOoLHTXi2yiSmqWB7frm8OLT3EciF5mbDMWVWjtncKmdMXZN1Rfrm0UxG7hl0Ywc2fFmx3t5O8MFVRnhfBK6KQec3mc8D3EeBBC2x3q3U1yt8tNVQxzQyMLXxvGWvaRgg+BGR7Vr46QGzJ+jNT3C3UsbjTwRmttz3ZPXURPnMJ7XQuOD27vHsW3oM80/Kv6cIzVjLXujlHOj9TXrSV+hvdhrXUlXFwzgFr2nmx7Twc09oKkCvt+lNqX580zFBpzVxy+ezl27S1r8cXU7jwY4/Wnv8AaomXLHuje2Rj3Nc0hzXA4II7Rhb82CLe9WdW+f8A7UYM/ZHbMbh6Fwoa203VlBcaSalq6em6uWKVpa5rg48MFfilk/Q17TzzKsxt+0ilvNNDatotq+HKeIdXFXxncrYG/bfHHgV9bps9FXapbrs/u0WqLaxrny08Q3a6mB+vh5kDHpN4LPGa0T25Y1Pz9P592qccTHdjncfuxW1SbsdhPdc2e4Fp/Cu3aJHmel3HHe6u5Y44werJBHcvIpS6GO0NcHNdHXu3gRgggs7F3dMyb1zoW8/PrGH7qIrR2qJtMJ92XdIfVmlNPVNNcnNvNNRabpqiihqXHIkEzI3b0npEFrjwJPFo9Ss3ofbTofU+q6zS0Vx8ivFPO6KOnqsN8pDWBxdG7k7A5g4PA8FrpdUF1ueAT52nmsPsqB+Je42vczXdHcWPLZfhDi4H66mYCubYo048TLZ/FPDNG2WKSOSNwy1zXAgjwK/XBa5Nke27XOh7dQ0VBdPKbVS2upMVBVMD4Q8Pe5p7HDj3HlwVrNlXSO0dqmJlNqCpo9PXDdpGtE0/1Ookmj3iGE+iGuBb5x7uPFUWpMJmuuE1VNPT1MRjqImSsznDm549/rXjVtmkdB1X1OvpuynrDlzftJPSB9efWvbjlZNE2WJzXscMtc05Dh3gjmuSs8zG/MEPHFQJGyUzQ+GodGQ2CfzXHhjzXcnexUP6a1uraLbFHJVUssUctoo2xvc3zXlkZa4NdyODwWwOopoamIxzxiRruYP4O5Y1rjRVi1dYn2bUluZdqE+j1ozNCfrmO55+X1qzp8lcdtubx3Rpqx7EU5dITo+XjZ4HX6wyT3jTLzxm3Pq1J4SAc2/Ze8ZUGr1K2i0bhRMaERF0gREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQF6lojDrfUnulj+i9eWvYsR/ONW3vliP8l6qzfCuwT70PVOY7TWvHZbbef861TJZRjRm2KDHFt0ifj1hyhqpdjTtxPb8GW4e3rApothAt22eDtNRRuHtDh+Fef1v9P+fRrxxtL+k/7NNpY79IWv+aOUzaRx8DWgD+50P0GqGdNZbrvacB8XSNtH+iOU0aSH6D2jv+D4foNXmz8SJRl0th/Um1Yf70x/fwteJ5nHetiXSybvbJdXHus7fkmC12nmV7PQfBLLl9BERblIiIomNiTtPQs15s7moTIXaj0lA6qpBzdWW4ODpY/F0RO+MfFJWEOqmufUSscC03WB4IPPg5NG6guGldUW/UFrcG1VFKHtafRkbycwjta5pLSO4r0dpFHa6K/S1VgyLLdHQ3Ggb+xMdneiPjG8uZ7AslcfZaflLZ7Wb016w9Cnla60RUruUr7kCPYCrLdE3aKKWop9O3WYMprjRUJge48G1Lo3Rj+H1QH2w8VUyKrcJKMB3APrTj1hepp28TRz22lbK+PrbX1Qc04IeyVz43A9jgRkFVZ8e6zKzHbujtbRMcDz7lHG3fRB1ZpNlZb6dkl7szzWUAc3ImAGJIHd7ZGZaR34X46PO0VuvdINFa9ovVvDYa9vLrMjzJh4OHPxBCkpw45zyXmx80btSderV1tY0rHpTVIhoy82q4U7K+2vfz6iTPmH7JjgWHxasYpqSSphqZG8GwQOkcfVw/CrZ9NjQhho7bcaCDELK15hDW8I2zcZGerfAeB9m5RDpzSzH2uopOqy59LBEOHpF82T8gW//nxTFG+SOl9pfccI5r7DJEY2OYc70bT7Yg8/OvOo3XezXFtbb56mmqaYdY2WFxa6PBxnI8cKzdDs/bqC51ZZGGRM8oe047W7kTfmKyOv2WWyay3SkipImVUlqraeKTd+NvNLSfaFnp+JV3q0eGq3S+tZ8q9HXtm1eyGn2g21zK2M5ivttiayoB75o+DZRw4kYdw5r1LTsuvB8nvOmLlbdT26OSSV0lBLiVjSzGHRPw5p8OKwfXmmXWC7W63Nc6R09DFO8kcnOzn2Lo0FyrrbX+W2uuqaOcHzZYJDG7HZxHzLdXHNq7wzr6en+mW94pOskPu6KpoxU0dbTzU08VrdE+OVha5p6wHGD6123Tll5pnjsuDfvTAsvpNqjLxTi37Q7DS6hpyNzyxjBFWMb9sMb3yL7DRGmtTPiqtn+qYpp2zCd1puh6ipB4Dda48HcB3rmc84/GWuvr6f5TXBF/OKd/T1R3bn4pGD62hqW/KV8p5GeTwvIw4Q059xc0rt3Cy3qw3KW2Xu21FvqWU031OZm6SCCeHYR6srxJZD5PCBn9Lxj1OV8atG4VzuviVhejztcvukbtp6wR1rpLPPdK2KppJXZYQ5jDGQTxbuuBPDvKtfsT2x6V2o2rrra+ShuEbtyagqSBI1wHxTyeMccjiO0Ba8dJVHV6msxyBu3aQ8fEMC+em7nWW+iovJKqWmcLwHB0Ty1zTuBuQRxBwTyVOTDExsj3uW1ve4BfrHDBVQej50kLhE2isGv6h9fFPI+Gnue6Otjc1wG7L3txx3ufflW7ikbLEJY3NexwDmuacgg8iD3LFMTWdSWrMPlU0zXtk8xjmyAtljeMskaeYIVLelD0e2WOOt1toaB5tjXF9fbGty6lJPF7PsO3HZ2K7bTkLq1tPvsc9kbXu3SCxwy2Rva0juVmPNbH59Fdo21HjiMggj1orB9MHZHSaMvMOrdNUzo7FdZCJYGt82kn+tHc13HA7DkKvi9atotG4UTGpERF0gREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAXo2iXcimbn0i0+4O/GvOX3ozul3HmFxeNwsxTq0MhmdnTVyz/3G3j+WprpDu1+1uEcpG0D/wCU38ahBx3tM3Two7f9MqabTJ1l62nD66joc+x0a8vrvg/n0ehhTNYHf1QNq2Pi6Wto/wBEcpo0mc2i0/vfF9BqhHTrv6ftrP8Ai1bR/ohU3aT4Wi1fuCL6DV50z70ObxpHXStH9STV3jZx99C10nmVsY6Vn6kerM/3I/8AdC1zr2uh+CWPL6CIi3KRERA7e32L71FW6S0NopMubDL1kHH0CfTaPA4B9Y8V6GjtM3zWGoaawact0tfcKknciZjgBzc4ng1o7SeHyK0Wnuj3sz2b2mC/batV0c87xvMt7ZjHAXDm0AfVJz6gB4KrJMVWUifRVPTtHeb3dIKWyWmuudQDJuw0sDpXHf8ABoPepZ0j0bdst1fRVz7FT2hlNgM+EatsTiASfRG84czzCn2u2xWXTdpFFs12ZXcW9jMRzvpWWukPjl4D3cO0qHtX7d9qVVI8NuenbSwk+ZBWiZ49u8eKyTlvbxENVMXrMpL2b7LNpey3UtLqp8lqrKSBjorhR0lS90k1KTlwaC0AuYfOAz8XHarQ0tTDV00NVTStmgnYHxyNPB7TxBHsIWuxm1XUlXG2O63KaSsZmSOtgqnteHNGRkZxhWO6M21t19uFdpS6MNNudRPbnSOGT1kQkki4dmd5zPAkdi8/stWJmeGjNXerRPlM+urXSXmzSUVbCyaNzHtIcM44cx4qLLfoe101VEIYAGipjZx7mMJ+clTHccObIOfDPvWKdWDO144YqpD7mYXl9RO521dN4rpj2l7bDQ26WUNAJglJP21QSuaySOOkqpnYzFBK4/dOJ/AvQl+p28xjmYWt97yVG20q/ut+na2CmO9U1VQyCNvsJ93Akrile6V0z52rhtlqYX6gq63gXwU0Fsp8fXBm/I72AgetyjL2e9etqm5G43R7myGSKNzg15/thLiXv+6Jz6sLyV9f02PsxxEvC6rJ35ZkTkQ4cCDkHuRFfpnidM0sG06+2+kZa77FT6lswGDR3JvWbreXmP8ASYfEFeyzSmzzX0TTou/flZvR4Ns18kHUyOJ5Q1I4eoPA9ajJwBhlB+sHzhdd8bwDuntAx3lZLYKRbdPE/t/htjNa9fe8sjuFg1FpPWFHbNRWyot1XHVtkDJW43gSPOaeTmnHMZC8milLYIOPo17XfIFk2mdo1fTWyKwaopW6k0+30KSreRLSn6+mm9KJw9rT2gr93TRkVVZpb/oivde7TTETVlO5m7X28d80Q9Jg/ZWZb37vJWR3a1Zx45q8S0VMkFypi13o1M2B2cW4VlOi90hDZay3aH1fM42Z1NDHRV8hyaN+AN2Qn+1E8ifR9XKrlPNirieP+9bwPPmv1TndLuOMwPj/AOPaq7Urbl1M7htxhPAePFfQ+CrN0Htq8mptNHQt+qS+7WmLeopZH+dUUvLd48S6M8PtS3uVmQcrF2ds6cSxXaNpS2at0tcNPXdm9QXOIxPdjJik+JI3uIP4FrG1rp246S1VcdOXZm5WUE7oZCBgOxycPAjBC2wVETJoXxPGWuGCqXdPTTDRVWPWsMX1WQvtdxc1v9sZ5zHHxIz7Fo6W3bbt9JV3jcKsIiL0VIiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAvpBwcV81+oj9UHiubcOqfEyJg/pWu/7joPpqZtO4F22ovcODKOk+kxQxy0xdB30VAf5ZUzWnzfzVpQfi0LPfj8S8vrfh/n0ejh4S7px4/L5tYP8A5atv81U6aU/rXbB+0ovoNUB6cfjXO1j/ABbtn81U86Vd+hdtP7Tj+gF5dp1aHWSOWA9KoZ2QarP96T98C1zFbG+lNu/mQaq3uXwS76YWuQr2+gndZYMvIiIt6kXZtlFJX1jKeLhni5+M7rRzOO3wHaSB2rrKxHQl0HHqXXVRqC4wtfa7EGTvLx5slScmJhzzDRmQ+O73Li89tduqRuUq7OLBBsE2YR1wtsNVrzUo3KemncG9UA0uxK74sUbfqkh5Z4dyrjrnaZWyanqbjarh8J3qQltRqOqjD5ZDyLaVjstghHENwN4jjkZWXdKHaRU3zUVwip5XA17Ooj/+xb2uy1g7nTPaZHfYho5FQESScnn2+KzYK99e63DXmt7P3Y59XsQzz6muwjv93uFRLL6E887pS1/3RPBdC5Weps96ktlc0CRvJzfRc0jIcPAhddjnMeHscWuaQQQeIIUh1cLdY6AF1gYDd7H+ntHOSHmfYOY9oU5pnFaPlKeniMtZ/wCzAYnPFIDn0A/n6sLLtE36tsNdNd6OQtqaE2+pjcTy3CG49RDiFiO8HUUpHLcJ4eLl6tG4AXOPsdbqc49TolzasTXUuqzqWxTZ7rah1jSzyU0gMsE0kErR2Pjdg/g96568CON2eck3yAhQF0SblJ+XW/0m+d03Grfu+xv4lLzKwuo4CDnhUO+Ur5zqcXZedPRwzuNw+9yrGxQ7ziMBjPoqsm3XUT4rbVPEh62onkoaRvg3HlEvsyIwfF3cpk1/dqiGCGhonN8sqyyGn3vRa8tyXn7FjQ5x9SqHtIvsN81NI6hke62UbBSUO9nLoWk/VD9k9xc8+Llt/Dun78ndPEKeqzdlPHqxrHdyREX0bxZEREQEZgqD3Rj5wvVttI2WvponDg+riYfawleYB+dqrwiH0gvfsePhmgB7bjTj3xrPblpp4h1LTpmaveyONr96S0TV7AO3q98/M0r9ut+ptFmxanoamWl8upRWUVXTOI3Wl72FrvHLHAg5BHflShsIpGXHV1hp5Blr9K3SPPqE6mDYdpWzax2XWLTd7hD6O6aVdA5zR58bxXTFkjT9c1wBCzW6js54XTiieFYrlDQartE+oLPTRUN0pAJbpb4RiORucGohb2DPpsHBvMcOAxmPhO8dm8751kWrbFqLZJtMlttaG+V0E2WPA+pVcJyA4d7HtyCPWOxdLUlHS0t0ZU29pFtr4xUUeTndYebD4tcC0+od6tmflwivvRt2tBakuOi9X2zU9peW1NvnEobnhIzk9h7w5uQto2m7rSXzT9BeaB+/S11PHUQuzk7r2hwz48VqkZzV9OhDqQ3nYtHa5n5mslVJSY7o3fVGfI4j2LNl+aLRuNp3A4YyoP6VWn/hzZfrGiA8+no4LxDjsfC4h+PuWqbg7hzWLaxpYq2vNukYHMuNpraZ7SOY3W/jK4x396Pur01X8M8OXYi/c0fVTSRHnG8sPsOF+F7DNIiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAv1H+mD2r8r9R+mPb8y5t8LqvxMgef6XbiP2jQ/TUwUxLbVtUIJGaigb/ACVDzuFguP7gofpKZKQg2Daue0VdF8jSvN6z4P59HpYPMpUsbt3XO1cjt05bP5sFPOk3Ztdu4/8ARI/oBQJY8HW21A/XaXtbv9GU8aP42i3H9qx/QC8jL8f+Ft+JYR0q/wBRzVBzj9Cz98C1z9pWxnpTuDdj2pycH9CnD+WFrnPM+te3+H/BLzc3MOERF6Ch96CIT1bIzwbxc49zQCT8yvb0YrILN0VPLB5lRem1NZM8c8OcYx7mNCo7p9m/UVeBnFDO7+SFsP2D0oqui7pymaMmSxEDHeQ/8KydRMzEw0447YizXnq65uvGp7lc3cp6hxjHY1gOGD1BoAXlL9SAte5p5gkH1r8rTSNViFF7btMiyXZrqV+ltUwVxYJKOTENXE7k+Injn1LGkXOTHGSs1t6usWScd4tX0ZdtT0uNKahq4KR/W2mthFVbphxD4XOyB62nLT6l4cUm7PMM8JLdC35Y1ndpmOutlVRpqT6perADVW8ji+WDHnx+PDj9yo8qCY6iIEYzRw/6pWPBa01ml/ir4/29DqIrFovTifKxXRCn39qN9aTwD6uU+5qmB1T5PbI3EjhSyH3lQb0MnmXapqPHxaCrf7y0KW9ayTRUYo6PjUzRx08AHPrJHYB9nE+xeT18fm6aemn3ES7ZNVPprJXV0Uuamv3rTb/OILYgB5XMPWcRA928q+dizPbHeoLtrKSkoHE2y0Ri30Y57zWE77/EufvHPqWGL2+jxeyxRHzeX1OX2l/oIiLWzCIiD9t/5pW/4EfSC9y2ZZere7s+EqM+9gXjRjNHX/4AfTC9mM9XNTzZ9Cqt7z/AWe3LTThK3RuaRtD07Ef7k3aH3CT8am7o4EwbPtJzN9OOysPuuLs/OfeoX6PzTHtXsEQHoVN3pj6ixxUxbCpuq0lpShAy6aw1Zx4x128vK6ueYb6x7rx+nzpGGq0nTarghHlNqruomcBzgmGRn1SD+Ue9Vd0+z4V0HcKcjentEzamHvET+Eg9WQ0rYH0gbIzUey3Uls+NUUpLT9k0b7T72rX7smePhq4UUn6XV26Vjh7AR8ys6fJvBP0U1pq8fV5zW4cD38Vaj8jyuDxV60tRd9T3aWoaPHMjSfmVWyzqzuO5scWn3qyH5H7lurtZTfEFBTtJ7M9Y7HzFWZPNJktXxpcoyAdvJY3qKrZHqeheXAClttbUPPYG4YF3n1jQD5wUb7VtQstem9eX6WTdZQWAUURH7LMXnH0FjxebxDm9NV215VsnXV1RN+ySvd73E/hXxTGMA8wi+gjh58iIikEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAQHBJ8D8yJ2H1H5lE8Oq/E92R2LLcm/tGi+kFMdBJmxbWf8AC0b/AJCoZqf+YXVvdQ03yOapgs/1SxbWQT/0eil/krzOs/p/z6PUwRqyWtPuzrPaOfrtHWp3+jhT3o8foLb/ANyx/QCr/Yzuay1/n42hrU7/ADDQrCaOb+gdtP7Vi+gF5PURrJH6J3uso+6Vzy3ZBqbH9zB99C13HmVsR6WI3tkGqiM+ba2n/PBa7TzXtfh0e5LzsvoIERegpetpHLr7HAOPlEUsGPtozj5cLYL0QLpDdejtpprXZdSxy0co7QWSuGPcQfatd9mq/ILvRV2RinnZIc9wPH5FbnoMaqbatT6q2Z1szQ3r319vBPpYIbIG+tvVu9hWbNG5lpp5x6+Sr20+yP05tH1HYnjHkVznibwxlu+S0+rBCxxWb6fGhJbXrai13Sw4obxGKeqcG4DKmNvDP2zPolVkV2Od1hRMCIi7cvT0teqzT1+pbtRSFktO8O4ciO0FZBtXtFNT3Gh1JamBlovUO9CxhyIJWkdZF4AEgjwIWGKTNmTmas0heNn9UQap7DW2dx5tqo2k7gP2bd5uO/dWHqY9jeM0faXodLPtMc4Z+8M06EvHaTqmb4ptr2/wpWrONrd8NppbteAR+hlJuw8cfnqbLIx62tJd7Qo86FszKXVGpqqpO5HFQsfKe5vWEleL0g9TOq6mHT7HDe651wrscxK/hGw/asxw+yWLLh9r1UQtrfswzKJPaT6+1ERe39nlCIiAiIg+0P8AzKu8YB9ML0ql+KQn/wC3Qv8Ac0hebD/zOs/wP+uF3akl1vOOyggefuXY/Cs15a8ceITXsbcKTa5bpXcmaonh/wApCVLGyDMFRoWA8vg68QEeIqCVC2kqoUesZqocDT6roZOfIPYQVOezqMt1DploHCCou0X8KTe/CvG6vxbT0cXmm026jj62yVDHDhujI8N3C1tbPour1bdZAPNpqScA+shg+dbEdr1+pdKbOL5f6st3aWkc5gPxpCN1rfWXELX5oiF1LpyorpeM9ym59vVRnJP3Tz/JU9N4xWn5+FdPN6x8njXMfnmoI/ZirKdC2P4J0hqa+PaWur6yOnjJHNsTST/Kf8irnUUs9XMIKdjpKieYNjaPjOJwArF6arYdKaRoNO0r95tLHiV/18jjvPd/CJ9yuyX3j180zXUpauerY4GOLpWtAHE54Y7VDfSM1U6PYLa4C/NXrK6vuTxyIpoiBFkdxDWH2rrV767V96oNJ22Uxz3V5ZPOeVLTAZmmPcGsz7SAon6QetaXWevXGzt6uwWiBlstEfZ1EfAP+6xn1YXXR4t3iZZepvqNQjpEReywCIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICdjvUUQcnDwXNuHVPie2fPhu7f72xn3PYpbs79y37UoxzfZKST3Mb+NRRQwdfVXRhdu/oRI/h27oacfIpRtmcbSW9+loJPcyP8a8zP5iI/nMPWxx5mUu0ruq1brl/Z+Z9anf5toVjNIt/pfth/akX0Aq2TvDNQ62OfS2a2tw/gtCsxpRpbpq0ntNFD9Bqw9VX83wp7vcR90lmifZlrKnxkt086XHgJFriWzHa9Q/CFtv8Ab3cG1elK5jeHawtP+stZrfRGTk4C9Xofgljy+jlERblIsz05qS5aZu9g2g2N4FwtM7KeqjBPn7oIbvfYyRgsPi0rDF6NguMVBVSNq4DUUFTGYauEHBdGTnLc8ntPnNPePFc3jcLKW1P3bKblSaW24bGd2N4ktd9pBJDKAC+mlHI/bxvGD34I7Vrm2i6OvWg9X1umb/B1dXSu4Ob6EzD6MjD2tcBn5OwqXejdtXn2PauOnL9VGr0Zd3NnjqoxlsO9wFQwfW8N17RxBB7W8bN9ILZBY9sWmKevoKqnhvcEG/bbiwh0UrHcerfj0o3cwew8R3GuniU2hrmRepquwXjS9/q7FfqCWhuNK8tlhkHH1g8i08wRwOV5at8KhenpW6VVm1BR3KikMdRBK2SNw+uBBHyheYnEEEHBHEHuXOSkXrNZ9XeLJOO8Wj0WUs0Vo0jpfVWvoHNZbtRzwGljbzYzBkkj9fWEtx4Ku15uFRdbtVXKqeXz1MrpHknPM8vYMD2LuXLUd2uFho7FUVH6G0U0k8EAGA178bxzzPLh3ZOOa8hZuk6e2Ldrzuf/AMaur6iuWdUjUciIi2MQiIgIiIOxTDNNVj/7H+sF36ZnW0oYOJda5QPuXZ/AulSD6lVeMLvnC9XT/n1NG08nUNSPkcst58y24o8Qzijk3bteXAE71faahvtaOPyqy+zJj33SzTdU4sfW3AtdjgTuNP4Cqv2h7Zqp7y4YfSWl7ye8ENye7kpX1fttotF7MKHT2n4/KdWyGeRtSW5ZQNkLm7475C30RyA4+B8nqsVsmSKw2Vv24nc6a2uHan1JbdlGnKhkoglbPdZGHLWyAZaxxHYxpL3dxIHMKIK+GKPFPTD8700baeDP1rRgE+J4n2r76AsFRbLbPcq8OddK8F0r5Dl7GHjgk/GceJXfqqNjXAO4RrjNkiusdOIX9Lh7a99uXU0HSdRWS3eRgxGHRwEjk4+k4eocPevRv2oqWijc90rnuzgMbxJPYOHb2Lx77dhBTtgixFDG3ADV83uZoSCn1Fd2Mm1RURia0W6QbwoWkebVTtPxu1jD24cexXYcfdKnNbt3L0db3+q0XpGextlMOrdQwt+F9w+dbaH0o6MHsfJ6cncMN71Di+1dV1NdWz1tbUSVFTPI6SWWRxc57ickknmSV8V7GLHFIeRe82kREVrgREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBEQnAyexRIHlxXcgoKh8e+I3Ebu8eHYsx0Ds5ut7DbjXUssFADlgcCHTerub4qRZdJQUFrnlqurgp2tJlmkO6wZ8T7h7Fh6jq4rPbXzLb0/TTPvT4RRTQPo73coH4ybLUe7qsrPq682SzXfWkFbXRxfCek4qWmHF2/OYoiGcOR4Hmo21ZdN+7zOouthkiphRTF2PPGN13sIWPTF8shfI4vc52CSo9l3REyvtmiszVYNu1zR015u1RJUVUUVw0HSWcOfTnhWw7u8w4z5vA+dyV1Nnt3tV90XablZa+Cuon0rGslheHNy1oBHgQQQQVqnEQdE31kfKpm6K+2afZfqY2m8yySaVuMgNU0Ak0snITtA8MBw7QM8wFXn6Wt/ejlRM+NQvpqymjFVbq+Zm9AyR9LUkngIZ27hJ8A4M+Vay9p+mqnSG0C96cqonxuoax7GZ7WE5YfHLSFtFpKq16isono6imuFurIvNlhkEkcjHcDhw4FQd0h9hEW0a2Ou9ukZT6ut8Qi65/CO4Rt9EP7A7GcHsORyXfSW9nHbKm8dyg6L0tR2K86cu8tpvtsq7bXRHD4KiMscPEd48RwXmr0NqBERSS9yx19BPQusN+e5tBI4yQVYbvPoZT8cDm5h+O3t9IcQMzLsB21X7Y3eI9KawbLX6VmIfC+N3W+TtdxE0DuT4j2tHswcg1+7V7FqvLI6H4Ju9Mbhasuc2Iv3ZKZx5yQv47h7SOLXdo7VXas8rq28alsX19oTZ7tw0VT1j5aasjmi3rdeKMgyw/au5kZ5sd4ggFUb2z7FdZ7MKx77nSOrrOXYhutMwmE5PAP/Y3eB9hK+2zXV+vNlzpdR6Du3wrp5zw6tpXsLox3CohzmJ3YHt4HsceStfsr6SOzjaLRCzalEFhuNSzqpaO4vD6WoBGCGykbpB4+a7B9a4i2uC1PVr/RXm2k9EvRmoC+5aMucunZpvPEGOvo3ZHxRnLR6iQO5V21z0ctq2lnOk+ADeaUZIntb+u4DtLODh7lZF6yr7dIiRfWrpqmjndT1tPLSzNOHRzMLHD2EAr5EYK625ERFIIiICIAvS09Zrhe69tNQUc9TjzpTGBhje9ziQ1o8SQome2Nuq1m06h8aIHqajgeMLl6umIZpq+1xQRPklko52sYxpc5xO8AABzKyKh0pH1r6eOpZca4+b5FZYXXKYg8N0vYOqZ/CcpD0jsI2h3im6iSJmirPIwMf1z+ur52Zzh27jA+xy0eBWG+StYmbTpurWfFYRNUOFpkipoJhcr8+KOnZSU31SGnLeW+RwkkBz5oy1p4ku5LM9CbPp6WcXvUO9VXN7t9sbzvCMn4xPxnfIFLlXojZdsXt/X3S4sFxczAMuJayfwZEPRb7h4qINZbSKy/Svp7VS/BVs5BgdvTSDve4cB9q3HjlYcue2SNY41HzbsPTRvutO3t3y9UdI4wRPbPUA+cQctZ6z2lYxXXjfy4kvcT7j4LxA0MiE9wqorfT9jpnHeI+xYMucfUsr2XaR1br25+T6Btj4YYn7s99rsNbB3ljeIafVvO8QqadPaI7p4X5M9K+NvxbJmad8puktrN51PT0zqqltzmb8VtjbgmqqG/GcMgtj7PSd2BRVdbhXXW41FwuVVLVVlRIZJppXbznuPMk/8AHYr57OOjtbdDNju0F0lu1/PWtrXVAxBWQyt3ZIC3mAQc7xycqt/SU2J1mz+4uv8AYoKio0rVOy0lpLre8/2qTw+td7F6PR5MUTr1eR1V5yeYnwhNERekwiIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiIM72V6W0NqAVE+tNoVPpaKGVrWQupXSyztIyXNIBAxy4qaLRXdFPQsYqqW51upLhHh0c0lLLM8OH1oIZG33KtVru9wtfWeQTRx9aAH78EcgOOXpNOF2Hamvrjk1FLn9xQj/VWPNhvknmdffTVitjrG5nz9k1a86SNtmc6HRWkm0zSMCqubw8g94iZ5vvJ9ShfVOqrvqGrrqi7Xqeu32ARte7dYPOafNYMNA58guBqe+j/pNP8AxOH/AGVz+We9kedPSn10cP8AsqMfT+z+Gv7rLZa2/u/b/bzrnUwzV1ZKyRrhI9jwc8+HH5V199pLSCPSHb4r1zqG5niW0DvXRRf7K5/LFcT/ANHth9dFH+Jd6yf9f3/057qf9nkB7RHxcPTd2r5SOYTwPHC9oagrskmitLvXRs/EvrFqatYf622R321Cwpq//U9pWPV9NBbQdYaHrWz6Y1HXW1uS50ccm9E4/ZRnzXe0Kx2gumXcqdkVNrXTENc5rQDV26Tqnu8TG/LfcQq5nVtxHo22xs+1oGL8HVl3Pow21n2tGwfgXNq5J/t/f/Sa2xT8U/suZcNu3R52kW9lv1jTljOxl0tziWHvEke9j2FYJdtg2xjWkck+zHaZQ0lSSSKSoq2zRjw3TiQfKq2s1XemOyBbz4Gkjx8y9S2bSdS2+USwQ2UPbyLrZE7HyKIjPXiP3/0m1emni0/4dPaTou96A1bU6av8cTayFrXtfE/ejlY4ea9h7j71jayHXustQa5vMd31JWMqaqKBtPHuRNjayNpJDQ1vDmSseWuszMe8xTr0ERF0h27RcrhaK9lda62ejqW8BLC8tODzB7x3g8Fkvwvo/UTSzVFodaLg7ndbPG0MkPfLSkhp8TGW57isPRcWpFvu7reape0NqHaxoKF1ds71cNQWaIB0lNTPNRGxvc+mk8+PxIA9ambQvTNonhtNrnSVTSzZw+otb99viTG8hw9jiqgUlTUUlVHVUs8sE8ZBZLE8sezHc4YIWSv1tWXCPqtSWu2agJIzUVUJZVkf4eMhx+63lVNbR9V1bY7c+F66HavsC2iU7aKsvFglfNwNPdqYQPB7syNAz6iubp0e9jWo6LraHTtvja70ai2zuZw+4cWn3KiUcWz25vHXSX7T5I4ndjrogfZuOx7yvYs1hZQyibRu1y100h5B9TUW2T27wA+VV2trnws9lFp92VqK7og7OpHEw3HUdMOxsdXG8fy2ZXk1PQ80eDmLUmqG+uKB34FE1n1P0jLa79CNZ1V5jb2w3Omr2/KXFe6dr/ShpBiW3VMw7zYmH6LVXbJPpd3HR3niGa/0IWkm8DftVSH7GKAfOF2IOiToxhB8q1NO4fFnqoGA/wACMn5VHj9unSW3t34GlB/xfP4kftZ6UlwaWw0NwpwfjMsMbPlc1VXtef8A7HUdNeP7P/KWbd0W9GxOBlpg1oPEAPnefupDu5+5Xs1GzDYtoporb7S2Km3BnfvVW13LliNzgz3NVcL1UdIe8MP5YNX3G2wSel5VeYaJmPtQ5vzLA7jpS1Uk5qtRbQLHUTuPnNpZpK+Un1tGPlVUY9z5vMrIx3j0iFsrz0iNjulqZ1Fp91TeHs4Np7RQiKL+G4NbjxGVC2vekdtA1Q+Si0xQQ6ZpH5Gac9bVOb4yEYb9yBjvURT12mKEllFTXO5D66UtpmH2DecfevKrb3PUM6lltpIIP2Nhfg+s73FX16WJ89v6y4nJSvNty9Kolom1Ulbfb1JU1TzmQRuNRO8/ZOJ3R7SV0K3UuAWWikZSNAx1r/qkp9pGG/cj2roNqowcutVC7wPWY+mvqy4U452G2O9sw+aRaIxRHo4tntaNROodGZ0007paiZ8zzjLnkkn2lexpLU9+0pdIrlYLvV0FTG4Fr4ZC3iO8ciPA8F8PhGiyM6bth/8AyT//ACL9tulCD/YtaXeuSo/+RTMbjUwqiYjzErL7P+mRdKV8VHrfT0NfFnD6y3u6qQDvMbvNcfUWqdLZt52L6kp5qSbVNvYyWNolhuERja8OaCWneG6cZwfHOFr2+F6H/wAKWYfd1B/91PhWhP8A2Xs/+UqP/lVFumrPEaT4n1Wz17sC2TazrHXHZ9r2y2aeTi6lbVRzU/hugODm+zPqUI7S9gmvdBWKe/3CKgrbPC9rX1lHUhw844BLTxwo+ju1tBG9pO0E9/X1I/8AdXqT62ubdM1+m6Cnjt1trzGaqGGomkEoY7eaPqjnbvHtGCcYV+OckTrmFd6UiN7YuiItW2cREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERA7U/44oiJAA05AwR2jmu3Dc7lDjqbjWx45blS8Y+VdRFzNYnmExe0cS9RupNRAYGoLuB3eWyf7S+FRd7tUH6vdbhL9vVSO+crpIo9nX5OpyXnmZHeccvy497jlERdRERw43IiIpRsREQEREBERE7cYHcuURRpAiIpBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQOJOAMk8gs6n2O7VKejkrJ9A36OnjjMr5DTcGsAyTz7uKwWPjKwHHFw5+tbdaJjHW6nBaHB0TQQRz80c1zM6dRDUSD29iZWe9ITRR0Btbvmno4yyi67ymgOOBp5POYB9rlzPWxYBkYzxwPepiUTDJdIaE1nrCmqKnS+mbneIaZ4jmfSw7zWOIyAT34XT1ZpnUOk7m22als9Zaa18YlbBVM3HlhJAdjuyD7iti/Rb0R+UXY3ZbbURCO41kfl9dw49bKA7dP2rd1vsKqv+SCHG2+iA4foDB99mURbymY8Ih0ns811qy2vuWmtKXW7UbJTC6alh32h4AJbnvw4e9ex+Yptb7Nnmof4r/vVr/yPcf1GbnwH9fpvvUSj7V3S+1nZtWXizwaW09LFQV89Mx73zbzmxyOaCcOxk4Ud07TpCI2J7XM/qd6h/i3+9YVbbZcbleYLPQUU1TcJ5uohpo25e+TON0DvyrI/0Z2tzgnSOmyM/sk/+0of2DTGo2/aNneADLqCCQgcgTJn8KbkfQ7FNrf/ANO9Q/xX/evMvWzLaLZIHVF20NqKjgZ6Ur6CQsH3QBC2D7ftrlBsis1suVdZam6NuFS6nbHDK2MtLW72Tvcwo00z0xdAXCuZTXqy3qyRuIHlBDahjPtgw7wHsKd0moUWzxPhzz2LntV/9t+xHRe1vSn5adGC3U98mh8oo6+jwIK/t3Zd3gc8g/0geeRkKgVXTVNFWzUlXC+nqYJXRTRvGHMe04LT4grqJczDK7fsy2hXDTzNRUOjrxUWh8Dp21kcGYjG3OXZzyGD7liIIIyOXetiOxwA9DahOP8AsxVfRlWuyP8AS2faj5kiUzHh+iccc8FmF42XbRbPY5r5ddGXqjtsMYklqZafDGMOMEnsHEL1Ojbo/wDLztmsFmli6yiin8trQRw6iHDyD9s4Nb90tkepLda9SWW7aZrXRSR1dI6nqogQ4sZK1wBI7M8cfa+CibEQ1M9uDzRd/U1mrNO6juVguDSyrttVJSzAjHnMcW59uM+1dDsXXoiXHPgOay/Q+zHX+t4TUaW0rcblTA48pawMhz3dY8hpPqJXr9G3RNHtA2w2jT9zy62jfq61gODJFEN7c9Tjhp8CVdDb5tnsexO22qz0dhFfW1MJNLQwuEEEMLCG5JAOBngA0ccFczKYhSbVmxrahpWkfW3vRV0hpGAl88LWzxsA7XGMuwPE4WBA5GVdvZr0v9OXu6x27WFhOnWzO3GV0VR19O0n9kG6HNHjxHfhVf296n01q7ahdLzpKyU1qtbn7kfUs3PKnNJzO5vJpfzwOzGeOUglgpOFkOkND6w1hHUyaW03crwylc1s7qWHfEZcCQCfEA+5Y4T448VsW6I2lKfQ2wm21Vx6umqrw74RqXyYbjrd1sLST9huYHe7xUzOkRG2vm/2e66fvE9nvdBUW+4U5Ampp27r2EgEZHiCD7V0c4VpfyQjR3kOqbLremjxFcoTQ1jgOAmi86Mn1sJH3Cqx35SJ2TDLNLbN9faptYuunNI3e6UPWOi6+mg3mb7eYznsWLzxyQTyQTMdHLG4sexwwWuBwR7CFf7oEjOwVuf7sVXzsVD9Uf2UXf8Ad8/31yiJ3KZjw89d/Ttlu2orzBZrFbqi43Co3uqp4G7z37rS44HgAT7F0DyUu9DX9clpT/1f81lUyiHgnYptbz+p3qH+K/70/MU2t/8A071D/Ff96uJ0qNt9+2RXKwUtms9suDblBPJIasyAsMbmAY3SOe98ihcdNDXB/wCyWm/4c/8AtLncupiFfdXaT1PpGsgotT2OutFRPH1sUdVHuF7c4yPDIwuvpuwXzUtzZbNP2mtutY8ZENLC6R2O84HAeJ4LLdue1a7bWL3Q3i8WugoZaGldTsjpHPLXAvLsneJOePYrv6Dsmltguwl11qacfnWhbWXapiYDNVTuA4Z7RvODWjkB7VM2n1RpTKp6Pe2Wno/KpNB3BzMZLY5oXyD7hryfcFG1zoK+118tBcqKpoqyF27LBUROjkjP2TSMhW2pemq03bdq9n5Zbd/GYrkHTtb34LA0nwyPWsc6X+1vZ1r3TVjptM0MFyusgFRJcpYTHNQMyR1B7S9xBy05aAMjmCkTJMRpWUckQckXTkREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEKIg4Z+nM+2HzrZlt71TUaJ2SRaqpnO3rdW2+WRrT6cXXxiRvtYXBazWfpzPth862H9Mr9bFd/XRffo1xZ3VH3T40nT33RNh2kWkNmFHuU9RKzk+lmw6J+e4PI/hqu/Rn0UdebZLJaZo+st9NJ5dX5HDqYiHbp8HO3W/dK0/ReuVHtY6MldoW8Sh81DBJaJi7i5sRbmnk+5BAHjGvh0LdASbP8ASOqNWaoh8krX1M1K90gx1VPSucJHDwc8PPiGNTejSS59Z+VdJS36EpJvqVBp6ouFa0H+2ySRNjafUzeP3YVU/wAkG/Vwov3ip/vsyyLok6oqda9LLU2qqkneuVuq5WMJ9CLrYRG32MDR7Fjv5IN+rjR/vDB99mSCeE1/ke5xsXufD/r6b71EsI1V0PtQ3nVN3vEWs7VFHX101S2N1FKS0SSOcASHccZ5rN/yPf8AUYuef7uzfeolV7aFtU2lUmv9R0tJrzUcFPDdaqOKNle8NY1szgGgZ5AYCj1PRLH9BZqUD+zi0fxGX/aUKbB4TT7f9HU7nBxi1BBGSOR3ZMZHuXWG1zajwJ2ham7/AOuD/wAa+vR/e6Tbxop73Fz3X6nc4nmSX8z8q6mJI0s/+SNf2EaUH99ZfvJVJBnhjmOSu3+SNcdEaU/fSX7yVSeCKSedkEMb5ZZHBrI2NJc4nkABxPsSESuL+R2alr6ih1NpOeZ8lFRmKupGk8IjIXNkaO4Etacd+T2lQ30zLPTWbpDX4Urd1lcyCtc0dj5GDf8Ae4E+0qzXQv2W3PZ9o24XzUcDqK73tzHGml4PpoGAlgf3OJc5xHYMDvVRukfq+n1xtp1BfqGUS0JnbTUjxydFE0Ma4eDiC72qI5T6Lo7G/wBZpQ/4sVX0ZVrpYfqbeHxR8y2LbG/1mlB/ixVfRlWu2hp56uenpKWMy1E7mRxRgcXPcQGj2khIJXP/ACPTR4pNO3zXdVGGvrpRQUb3dkUZ3pHDwLyB9wvO2JbY/hvpealZJU5tGo96gocnzQabPUH7oCX2vVh9J6JpdObGqLQUVe639XazRPq4S0PEr2HrJG73DeLnPPFQ/p/on6KsN+oL1btcX+OsoKiOpgcX0/B7HAjk3wUJ4RJ099HfAe1Sk1TTRYpNQU29IWjgKiIBr/ezcPvVdQVsV6Y+j26w2H3KopIxNXWVwudOW8SWsBErQfGMuOO9oWukceRyD3Bd1c2ZvsK1ydnG1G06rkgfUUsDnRVcTPSdBIN1+6PrhneA7SPFXq1xonZl0htJ0FzhuXlQgafI7jbpQJoN7GWPaQe0cWPAIx2LXBDFJPPHBDG+WWRwYxjBvOeScAAdpJIAXvS/l02c6nlpjJeNMXqDHWNZK+nlweIJwRkH2hRMESnzX/Q71XbKSWs0hf6O/BgJbS1Efk07h3NOSwn1lqrbeLbcLPdKm13WiqKKuppDHPBOwsfG4dhBVoeix0gdoV52j2jRWp6j4fork50TZ5ImippyGOdvbzQN5vm8d4Z4813fyRTTtsgqNLapgiZFcarrqOoIbgysYGvYT3lpJHqcB2KNkx4Vy2QaTk11tNsGlmNcY66saKgt+LA3zpT/AAGu+RW46eesjprZ/ZNIWmYU1Tcapk5EZx1UFNuubw7B1nV4+1WH/keWjRNc79ryriBbTtFtoiR8d2HzEepu43P2RUt7Z9gmmdqWsG6ivmrrpTSRUzKaGCmfAI42NJPDeaTkuc4n1+CSmOH42gwRbcOiebpRxtkr57cy4wMHxKyHJeweJIkZ90teRcMZHIjgtomxLZ/bNmmk5NL2u91d2pDUvqIxVGMui3gN5o3APNyM8e0la/Okbo06F2xagskcZjo3VHldFwwDBLl7QPtcub9ypqiy4fQIP9QUfvxVfOxUO1P/AGU3f931H31yvh0B/wBQQfvxVfOxUP1Vw1Tdv3fUffXKI5J4eeSpd6Gp/wCUlpX/ANX/ADWVRDkKXuhrkdJLSue+q/msq6lELXdKHYddNr1zsVTb79R2sWyGeNwnp3yGTrHMII3SMY3VDf8AQWam/wDHFo/iMv8AtLJunvrDVmlrzpKPTeo7pZ2VFNVOmFHUuiEha6IAnHPGT71WUbXNqXD+qFqf/wDYP/GuPLuXo7e9k9fslv1vs9wu9NdH11IalslPC6MMAeWYIcT3K4mxHaRovbRsuj0lqF9K66uoW0l0tc0m46cNAHWxYOXNOA7hxafVxoXqfU2otUVUVTqO+XG71ELOrikq53SOY3Od0E8hk5XD7DqGj0/SaqNsroLVNO6KnuAYWxGVnMB/YfHvBweBXUw52tnrboY0Mr5p9HavmpcnMdLdIOsaPDrGYd7S0n1qtG1DZnrHZrdWUGq7Wads2fJqqJ3WU9RjnuPHb3g4I7lkOhOkDtX0jUQ+T6oqrnRRnjSXT88xuaOO7vO89o8Q5XR2rQUO0jox19zu9B5Gaqwi7xRyjLqWZsXWtwTx4HI7Mg47VEbT4a3gcrlflpy0HvC/S6cCIikEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQERECMgSNJOAHAn3q83St2haEv3R6utmsusbBcbjIaTcpaWvjllduyxl2Ggk8ACT4AqjPq5rg8gOwKJjcp2m/oX7QaHQ21OalvdxhoLLeaV0FRPUSBkUMrMvie4ngOO83P2YU99LXbJpJ2xyusmjtU2i63G8SNo3tt9YyZ0UB86Vx3CcAtG7k/XqimPWh/4CjtT3Jz6EOoLFpnbDVXPUN5t9pozZ54hPV1DYoy8yRENDncMkNPuXPTf1FYNTbX6O46dvNvu1G2zQxOno6hssYeJZSW7zSRnBBx4hQXjimOKnXlG/C53Qe11orTOye4UGpNWWSz1b71LM2Ctro4XlnVxAOw4g4yD7ivVu2g+ibdLrWXOs1XYH1NZO+omcNT4Be9xc44D+HElUcxyRR2p7l2vzNeiJkAamsJ4/8Aig//ACKrmx6rttp25aZrqqsgpLdSX6KR9RLKBHHE2Q+cXnhgDHElYT34PsyuMHmmjbZhqrWmwXVdNDTam1RoG8QwPL4o62tp5mscRjeAccA44ZXhw696Nuh2OrLRc9E0MjeTrRTxyTE47OqaStdeDwXAGD2qO07lmOkN0oKnWFqqdLaHpqq2WipaY6utn82pqGHmxgB+psPbxyRw4ZOaztGSAPYucLnA7F1EaRM7Xq2VbQ9B0PRSorBWazsFPdm6eqYDRy3CNswkc2TdYWE53jkcPFVl6KdNps7Y7Pc9W3q2Wm12lpri+vqWQsklYAImguIyd4h2O5pUXnK4Awcjh6lGk7WV6dG0u0auvNi09pm8Ul0tdBC6qqJ6SZskT53ndDd4HBLWtPtcq0cV+wO4eCYTtRMrm9DTavpOn2T1WjtbagtVt+Dqh8VM24VTIhPTSgu3W7xGcOLwfBwVTde2u32XWd3tVpuNLcrdT1cjaSqpphLHLDnLCHDgfNIB8QV4iDxUxGiZ2zLYvrWm2fbQrfqiqsVNeo6UnMExw5hPDrIzyEgHokgjieXMXdpdc7AttNoghvVRY6qZrcto7xu09VB3hriQf4DiFrwPNcEAjBAI7iFExsiWxu2jo+bH4p7vbKjS9lmewtMkVV5RUvb9a3znvOe5vNU86Tm11+1fWcNTR081JYrYx0VvhlI6x+8QXyvGSA52Bw7ABxUTBoaeDQ0+AXOD2ZSIT3LzaM19oHZT0Y2W+z6u09X6jprY+fyWkr45JZK6bjjdByd1zhnhwDFRiR8j5HPke573ElziclxPM+08V+sFCPBT2omUgdHPWg0HthsV+qJuqt7pfJK9xOAIJfNc4+DSQ/7lTL06q3Quq6ewan0xqywXW5UpdQ1kNFXRyyuhd57H4Bzhrg4E/ZhVZwmCo0na7nQs1/ofTexZtt1Dq+xWmtNzqZPJ6yvjik3Tu4duuIODg8UrNnPRLq6yern1dZHSzyOlkI1TgFzjknG/w4lUjx60xhNHcuuNmXRFyMarspP+NX/9qvvReutm0/0ibFcrrcqO3WullrA6qqZ2siYDBK1uXk44ktHiSFFeCuMHOeKaNthu1GTo6bS6mgqNW6305VvoGSMp+r1A2HdDyC7O68Z9ELDPzNeiJ/4osP8A/qf/AO1SXHrXOFHadyWuk5YdmWn9U2mDZfcKKvt0lEX1Zp7iatolEhAaXbxx5uOGQrF7GOkJsr1Fo6l0hq2323TD4qZtK6iqIgbdMxuAAxxBDR24fy+uPNUa5jC4Pip7TubEotnfRroK1uoGW/RcZjPWiR9xY6AdudwyFmPZhRV0rekRp+66Uq9B6BrBXtrh1VwuMQLYmRdsURON4uxguHADOM54VB3G/Wt9wXOEiptyFyiLpyIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiLI9mWk6zXOvrPpSieWSXGpbG6QDjFGPOkf9y0OPsQelst2W6z2k10kGl7UZKeE4qK2d3V08B7nPPbjsGT4KTXdHXTdCRSXvbnoqhuXI0zXtcGu+tyZGk+4Lp9IbaY2hkdsm2cyutGjrFmjl8lcWPuEzeEjnvGC5u9n7Y5J7AIHw3jgAeGFzynhLe07YFrTRVm/LDTS0GpdPY3jcrTJ1jI2/XPbzA8RvDvIUS54LOtkm1TVezSvmlsVRFPQVLHMqbbV5fSzZbgFzM8CO8YJHA5BK42N6LqNqO1ah080NpYayZ9TWugYGNggad5+40cG8w1oHAFwU7NbNlmyjW+0qoe3TNp36SJ27PX1D+qpoj3F5HE+DQTxUlP6Ommre4Ul/wBuWirfceRp2va4Nd2gl0jT8gXQ6Q212Stnfs62fyGyaHs2aKOKiduGuLODnvcOJYTnA+N6RyTwgrDeQaAPUo5E0626N+uLHZn33T9Ta9Y2doLjUWaXrHtaBkkx9v3JcoZPBxGCCDjHaFk2zbX+qdnl+jvGl7nJSPa4GanJJp52/WyM5OGO3mOYKlfpIWKw6s0PZNuOkKJtFBd5fJb5RMxinrBkb2B3kEE9vmO5uKk5YDsS2U3naxeLjbLLcrfQS0FM2oe6rDyHhzt0AboPasO1FZrjp6/V1ju1M+mr6Gd0E8Tviuace48x3ggqduhTJJE/aTNDI+ORmlZHMew4c1wLiCD3gjK6G02KLa7slpNrFujB1NYo46HVkDB50rA0CKswOwjmewZ+t4xvymYQSs11Hs6udj2Wac2g1FfRy0F+mkhgp2B3WxFm/kvyMY8w8u9YSOftVgdqw/5Guynxr6n/AN5TtGkNaI0pf9a6ip9P6at0ldcJ+LY2kAMaOb3uPBrR2k/Opfq+j5YLK7yHVm2rRdmu4A36Le6wxnuc4vafkC73R6qKqxdGratqjTm8zUUXU0/XRcZYKchpc5p5gedIc/Y57FXZ7nOle9zi5zzlxJyXE9pPaT39vNRzKeISxtC2C6x0tZHaitk9u1Zp5oLnXKyy9c2Md72DiB3kbwHaVh2y3RtdtA11btI22rpqSrr+s3JqgExt3I3SHO7k8mkLraT1nqnSkFfBpy+1tshuEDoKpkD8NkY4YORyDu5wwR3qQOhn+uQ0r/6r+ayqZ4RCLr3QSWq919qmeySWiqZKZ72ei5zHlpI8CQumvc2h/qhak/fer+/vXhpBLIdm2k6zXWuLXpO31VPS1NxkdHHLOCWMIY5/HHHk1edqK1y2TUdysc8scs1vrJaSSSP0XOjeWEjPHGQpB6Jv64rR37ql+8SLFNq/6rWrf3/rf5y9RMju7YNndz2Z6mprDda6jrZ56KOsbJShwaGvLgAd4A5G78qwxT907D/VctR/8v030pFAKmJJe9oHTkWq9TwWWa/WqwslY95rbnL1cDN1ucOd3nkFJn5gtuPLbZsz/wD2JUKEZXAAyMAe5JgiU91vRslorRRXes2saAp7fXbwpKqSqe2Kfd57jiMOx4LofmD23PHbZszx++RXo7ZMf0JexwH6+s+dygLh3BRCZZXoXRVXq/aPSaIttxom1NVUy08dW4kwHcDzvDHEghnD1heJqi2S2HUV0slRIyWa21k1JI+P0XOje5hIzxwS047VInRI/XE6QH7Zl+8SLEdsPDatrQ/38rx/pEilEMt2lbD9V6G2f2fW1XVUNfarkyJzjSh+9S9awOZ1m8BwOcZHb6wotBV1doOuLdp6t2c6X1WBNo7VGjoaG7RvPmwkhgjnHcWOPE9xJ7AqqbWNEXLZ7ru4aYuWX+Tu36ao+LUwOyY5R35HPuIIURJL8bLtG120DXNv0lbaumpKqu39yaoB3G7rC453cnk0rx9Q22Wy3+42eeSOWWgqpaV72ei90by0kZ7CR8oUn9Df9cXpgcs+U/eHrA9qIc/afqkNBLje60ADmSZ3/Kp35NOro7S9/wBYX2KyaatVTcq+UbzYoW5w3tc48mtHaSpqHRpjs8LPy+7VdHaYq3DPkj5xJI3wJc5nH1ZHivV19fHdH/ZxbtnulJGU2tb1SsrdRXRmDLTh4O7Cw/FPMDuALubsqtdTLLU1ElRUyyTzyOLpJJHFz3uPNxJ4k+JUT5OE46i6NGo22WW86E1LYNc0kI3pI7XKBOB4My4O9Qdk9gKg6aKWCZ8E8UkUsbiySN7S1zHA4LSDxBB7CvX0Vqm+6N1BBfdNXKe3V8LstfEcNePrXt5PYe0HK7m03WVdr/Wlbqq5UFvoqmr3Q+Kih3GcBjJzkuce1xOSpgY0iIpQIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAp06Dwb+bPUVAAdU09irJaYY49Z5g4eOCfeoLKznYJrRmz/azY9TVJd5FDMYa0N/YJBuPOO3AId9yonhMMHllknlfPM8vlkcXyOPa4nJPrzn5V+RyUpdJLZxU6E15UVVGzyjTV5kdWWetj86KSKTz+rDhw3m55drd0qLeSRwS5PJWD6Fh8nl2kXOnIFwo9KzOpSPSafOJI9rWqENK6cvuq7xHZ9OWupudwkY57YKdu87daMknsA9f4QpC6MWsodnm2OndqBjqa21zJLTdWTN3eqa8gZeDyDXtG8OwZ7lEphEzD9TbnngZ9a5Uhbe9mty2Z66qrXLC99oqXumtNXzZUQE5aN7lvNBDSOfDPIhR72qYRLlWD2Rjyzod7V6WscTTUtXBPThx4Nl+pnI8ctaoDt9FWXCuhoaClmqqqd4jhghYXvkceTWtHEk9ysPthgh2S9He07JnzxO1Nf6kXa+tjeD1DAQWxk+trGjv3HHkUlMOt0L/Q2nY/8Jzf66jTYNtAfs71rT3GpiNVZK2HyK80ZG82elf6Xm8iW53h6iO0qSuhd6G03/FOb/XVeIx9SZ9qPmXMckpF296AZoHW/U22UVWnbnGK6yVjTlktM/BDd7tLM4PhuntWf7V/1m2ykft+p/8AeXy2PVFPtY2XVexy7zxtv1sD7hpGpldjLgMyUuT8UjkO4n60Ls7Yqeek6IWy+jqoXwVFPc6uKWKRpDmOaZgWkHkQQU2mEabFtp982YaimuFthgrqCti6i426p/SaqLjwPcRk4OO0g5BUmT0/Rj2gS+VRXK97NbnOcvhfH11GHHiccHNA9rPUFAgtdyFnF5NBVfBpn8nFX1TupMuM7m/y3sccLpu5+pdTDnaXtqGwbUOk9OO1bYbtbtX6WAy65Wt28Ym98jATgDvBIGeOFz0NOHSR0rnvqv5rKsj6Clyu/wCazNpuPrJ7BcrdUG6UrhvQlrW+a8t5ZyQ3PaHkLBdjV9tei+kPZrsJg200l5kg60nzWwPL4t7PcGuB9QUJYrtE/VC1J++9X9/evCypL6TWj67R22fUFLUQvbSV9VJcKGTHmywyuLuB7cElp8R6lGamOESlPomZ/oidH/uqX7xKsU2rcdrWrcf3frP5y9Sf0LrE47S6jXVwBgsOlaCerrKl4wxrzGWtbnv3S52O4eIUMX+4vvGpa+7vbh1dXSVJHcZJC/8A1lHqlN/Ts/VctX+L9N9KRQCFP/Tt/VctX+L9N9ORQAEqiXK4HpD1rntQekPWukJ82yD/AJJmxz7es+dygFT/ALZP1pexz7es+dygHmFzVNkqdEj9cVpD90y/eJFiG2L9VbWn7+1/84kWX9En9cVo/wDdMv3iRYfti/VW1p+/tf8Af5FPqRwmDpkf1s2VDH/ZOLgftY18LKTtv2JOsj3ddr3RFOZbe4nMlxtoxvRd7nM4Y7eDfrivv0yv627Kx/5TiHyRqGNnmrLtofWdt1TZpN2roZg8NJw2Vh4Ojd9i5uQfXnsURwmUgdDb9cbpj/1P3h68dkNPUdJzqKrd6iTWbmvzyx5aeBU96I0lam9JLQu1DR0f9KurBUzhjRwoqzqHmWB3Y3iHEDvDgOQVZdoVVUUO1rUlbSSGOoptQVU0Tx8V7alzmn3hPUZb0tKmpqOkRq41LnEx1McTATyY2GPdH4fao3stLTV16oaKsrWUNLUVMcU1VIMtgY5wDpCO0NBJ9inrpOWRuu7DaNuel4hUW650kcF8ii851DVRjdy8DkPiknlhp+MFXr5lMIlOjtj+yYZ/5Qlg/iX/APawrbts5Zsx1dSWGO+NvUdTboq5lS2Dqhuvc4AYyexuc57VgUUU1RI2mgifLNKerjjYCXPceAaAOZJIAA71O3Tcikh2mWGCVjo5Y9MUTHtcMFpDpMgqPVKCEQIunIiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiIC4455rlEEvbK9t9XpzTR0VrKw0ustHO5W+sI6ym/wTznAB4gdmTghZIJ+iVX4rpKPXVqefOdRMcXtb4B2XcPulXwhcce5RpO0/3vbnpfSenarTuw/SDtNtq2FlVea12/Wytx8Xi4tPiScdgB4qApXySyPkmkdJI9xc573ElxPMknmT296/OCv0mjaaNnG3iW3aXZojaLpum1tpRgDYIakjymkaBgCN55gdgOCBycBwXtSDol3Eis6zXloLhvGkYC8N+xBw/h90q+EJxTRtYhm2TZfs6ppmbGtAS/DD2OjF9vh35YwRgljck9vLzR3g8lA2orzddRXyrvV7rpa+41km/PPK7LnnkPUAAAAOAA4LoYXKaNpR6P+0Wy7Po9YfDFLcKg3uyPt9MKVjHbkjt7BfvObhvEcsnwUWMGGgdwC/XzImh3LDdbhYb1R3q01L6WuopmzwSs5se05B8R2EdoJCm7pH7brBtS0Jp+1W+z11tudHVmrrg5jBAXuiLX9W4OLjlzickDhx5qBVwApNpQ2Q7Zbvoe2T6aulqo9UaRq3E1Nnr2gtBJy50biDuk88EEZ48DxWVTv6Kt9xXSN13paVx3n0VMBNG09oaSH8PaoGXHFRMG093vbDojRmkblpXYlputtr7pGYa+/XNwdVyM5brBkkcCcE4AySBnioCIHLHABfrC5wEiNEztOmi9t9iuej6XRW2PSh1ZaqIbtDXxPAraVoAAG8SC7AA4hwOOB3l3xN0SID5W2m15VEed5I4uAd4E5H0lXsjh3rjj/wAFNG0xbWNtMN90mzQWgdNwaQ0ax29JSxEGerPA/VXDsyASMkkgZccKHmcHtd3EcvWgC5SI0bWS2l7S+j7tFvdLe9TWPaGK6CijpPzq6njZusyRwMh45cePqWLeXdFzssm1D+MU3+2oVwgHanabZJtDl0VLqHe0DTXqns3UMG5dntdP1nHePmkjd5YWOD0gg4DCKY8EpN17tCs+oNiGgtD0dPXR3HTjpzVSSsaIpBJkjcIcSefHICjIIiQM02H6st+htqti1XdYKmejt8z3yx0zWmRwdG9g3Q4gc3DmQvB15c6a/a1v97pBIynuVxqquESgBzWSSOe0OAJ44cM815KIbSjt92i2XX9JoyK0UtfA6xWVlvqfKmNAfI0NyWbrjlvA8ThRYv0nsRCcOi9txptl7661akoq25WCoeKmCKmax8tNUjgXsD3NGHN4Hj2A9pURayuUF61herzSskZBX3CoqomyDDgySVzwDjhnB44XmImjbPdju1bUuzK4VDrX1Ffaq0btfaqwF1PUjGMkfFdjhvdo4EEcFIz7/wBFrVRdX3fSuqdJVzzvSwWyTfp97t3cEgD7lvqVezyTj3KNJ2sVTbUtimzcPq9lOhK66ahAIp7rf3ZbTk/GY0uJz6gz1qCdW6hvOq9Q1d/v9dLXXGsfvSzP+RoHJrQOAA4ALywFymjYiIpQIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg/9k=" width="56" height="56" style="object-fit:cover;border-radius:14px;" alt="MSC Logo">
+    </div>
+    <div class="logo-text-block">
+      <div class="logo-name">Media Sales Consulting</div>
+      <div class="logo-tagline">Social Media &amp; KI</div>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" id="btn-main" onclick="showTab('main')">&#128203; Hauptskript</button>
+    <button class="tab-btn" id="btn-help" onclick="showTab('help')">&#128737;&#65039; Hilfsskript</button>
+  </div>
+</div>
+
+<div class="content">
+<div class="tab-panel active" id="tab-main">
+
+  <!-- QUALIFIKATION -->
+  <div class="sec-head" style="margin-top:0">
+    <h2>Qualifikation</h2>
+  </div>
+
+  <div style="background:var(--bg3); border:1px solid var(--border2); border-radius:10px; overflow:hidden; margin-bottom:4px;">
+    <div style="padding:9px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+      <span style="font-size:12px; font-weight:800; color:var(--gold);">Alter 18–55 Jahre</span>
+      <span style="font-size:11px; color:var(--muted);">· Alle anderen sofort disqualifizieren</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr;">
+      <div style="padding:14px 16px; border-right:1px solid var(--border);">
+        <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#2ecc71; margin-bottom:10px;">✓ Geeignet</div>
+        <div style="padding:6px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;"><span style="font-size:12px; font-weight:600; color:#d0daf0;">Azubis / Schüler</span><span style="font-size:9px; font-weight:800; padding:2px 7px; border-radius:4px; background:rgba(37,99,235,0.12); color:#7ab0f8; border:1px solid rgba(37,99,235,0.2);">Low</span></div>
+        <div style="padding:6px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;"><span style="font-size:12px; font-weight:600; color:#d0daf0;">Teilzeit</span><span style="font-size:9px; font-weight:800; padding:2px 7px; border-radius:4px; background:rgba(37,99,235,0.12); color:#7ab0f8; border:1px solid rgba(37,99,235,0.2);">Low</span></div>
+        <div style="padding:6px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;"><span style="font-size:12px; font-weight:600; color:#d0daf0;">Vollzeit</span><span style="font-size:9px; font-weight:800; padding:2px 7px; border-radius:4px; background:rgba(232,200,74,0.1); color:var(--gold); border:1px solid rgba(232,200,74,0.2);">High</span></div>
+        <div style="padding:6px 0 0; display:flex; justify-content:space-between; align-items:center;"><span style="font-size:12px; font-weight:600; color:#d0daf0;">Selbstständige</span><span style="font-size:9px; font-weight:800; padding:2px 7px; border-radius:4px; background:rgba(232,200,74,0.1); color:var(--gold); border:1px solid rgba(232,200,74,0.2);">High</span></div>
+        <div style="margin-top:8px; font-size:10px; color:var(--muted); font-style:italic; border-top:1px solid var(--border); padding-top:7px;">⚠️ Selbstständige: erst fragen was sie machen</div>
+      </div>
+      <div style="padding:14px 16px;">
+        <div style="font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#e05050; margin-bottom:10px;">✕ Nicht geeignet</div>
+        <div style="padding:6px 0; border-bottom:1px solid var(--border); font-size:12px; font-weight:600; color:#d0daf0;">Respektloses Verhalten</div>
+        <div style="padding:6px 0; border-bottom:1px solid var(--border); font-size:12px; font-weight:600; color:#d0daf0;">Deutsch nicht flüssig</div>
+        <div style="padding:6px 0; border-bottom:1px solid var(--border); font-size:12px; font-weight:600; color:#d0daf0;">Nicht qualifiziert</div>
+        <div style="padding:6px 0; font-size:12px; font-weight:600; color:#d0daf0;">Unter 18 / über 55 Jahre</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GESPRÄCHSABLAUF -->
+  <div class="sec-head">
+    <h2>Chatverlauf</h2>
+    <span>Schritt für Schritt, immer nur den nächsten Step im Kopf</span>
+  </div>
+
+
+  <div class="steps-wrap">
+
+    <!-- Platform label: TikTok -->
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; padding: 0 2px;">
+      <div style="height:1px; flex:1; background:linear-gradient(to right, transparent, rgba(255,255,255,0.1));"></div>
+      <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px;">
+        <span style="font-size:14px;">🎵</span>
+        <span style="font-size:11px; font-weight:700; color:#c0c0c0; letter-spacing:0.5px;">Über TikTok Chat</span>
+      </div>
+      <div style="height:1px; flex:1; background:linear-gradient(to left, transparent, rgba(255,255,255,0.1));"></div>
+    </div>
+
+    <!-- ═══ STEP 1 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">1</div>
+        <div class="step-title-area">
+          <div class="step-title">Erstkontakt</div>
+          <div class="step-subtitle">Du meldest dich als erstes auf den Kommentar des Leads</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Hey, grüß dich! 👋 Du hast unter meinem Beitrag kommentiert, hast du schon mal irgendwas im Bereich Online-Business ausprobiert? Oder stehst du da noch komplett am Anfang?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPLIT nach Antwort -->
+        <div class="branch-split">
+          <div class="split-label-row">
+            <div style="text-align:center"><span class="split-label a">A, Hat schon Erfahrung</span></div>
+            <div style="text-align:center"><span class="split-label b">B, Noch nichts gemacht</span></div>
+          </div>
+          <div class="branch-cols">
+            <div class="branch-col a">
+              <h4>Pfad A, Hat Online-Business Erfahrung</h4>
+              <p>Hat schon was ausprobiert → weiter zu <strong>Step 2A</strong> (nachfragen was & wie es lief)</p>
+              <div class="branch-next">→ Weiter zu Step 2A</div>
+            </div>
+            <div class="branch-col b">
+              <h4>Pfad B, Noch gar nichts gemacht</h4>
+              <p>Noch keine Erfahrung → weiter zu <strong>Step 2B</strong> (direkt fragen was sie aktuell machen)</p>
+              <div class="branch-next">→ Weiter zu Step 2B</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-line"></div>
+
+    <!-- ═══ STEP 2 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">2</div>
+        <div class="step-title-area">
+          <div class="step-title">Hintergrund erfragen</div>
+          <div class="step-subtitle">Zwei Wege je nach Antwort aus Step 1</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <!-- Pfad A -->
+        <div style="border:1px solid rgba(37,99,235,0.25); border-radius:8px; overflow:hidden; margin-bottom:12px;">
+          <div style="background:rgba(37,99,235,0.1); padding:8px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid rgba(37,99,235,0.2);">
+            <span style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--col-a);">Pfad A</span>
+            <span style="font-size:11px; color:var(--muted);">Hat schon Erfahrung</span>
+          </div>
+          <div style="padding:14px;">
+            <div class="msg-group">
+              <div class="msg-row you">
+                <div class="msg-label">Du</div>
+                <div class="bubble-wrap">
+                  <div class="avatar">✏️</div>
+                  <div class="bubble">Was hast du denn genau ausprobiert?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:12px; background:var(--bg3); border:1px solid var(--border); border-radius:7px; padding:12px 14px;">
+              <div style="font-size:9px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Folgefragen je nach Antwort wählen</div>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="position:relative; padding-right:34px; font-size:12px; color:#c0cce0; display:flex; gap:8px; align-items:flex-start;"><span style="color:var(--gold); font-weight:800; flex-shrink:0;">→</span><span>Wie lief das? Was hat nicht funktioniert?</span><button class="copy-btn" style="position:absolute;right:0;top:0;" id="ct_d874d8c7" onclick="copyById(this.id, this)">⧉</button></div>
+                <div style="position:relative; padding-right:34px; font-size:12px; color:#c0cce0; display:flex; gap:8px; align-items:flex-start;"><span style="color:var(--gold); font-weight:800; flex-shrink:0;">→</span><span>Was hat dir daran nicht gefallen?</span><button class="copy-btn" style="position:absolute;right:0;top:0;" id="ct_1997d367" onclick="copyById(this.id, this)">⧉</button></div>
+                <div style="position:relative; padding-right:34px; font-size:12px; color:#c0cce0; display:flex; gap:8px; align-items:flex-start;"><span style="color:var(--gold); font-weight:800; flex-shrink:0;">→</span><span>Warum hast du damit aufgehört?</span><button class="copy-btn" style="position:absolute;right:0;top:0;" id="ct_dd89529f" onclick="copyById(this.id, this)">⧉</button></div>
+                <div style="border-top:1px solid var(--border); padding-top:8px; font-size:9px; font-weight:700; color:var(--muted); letter-spacing:1px; text-transform:uppercase;">Falls noch aktiv dabei</div>
+                <div style="position:relative; padding-right:34px; font-size:12px; color:#c0cce0; display:flex; gap:8px; align-items:flex-start;"><span style="color:var(--col-a); font-weight:800; flex-shrink:0;">→</span><span>Machst du das hauptberuflich?</span><button class="copy-btn" style="position:absolute;right:0;top:0;" id="ct_b1ba8a0c" onclick="copyById(this.id, this)">⧉</button></div>
+                <div style="position:relative; padding-right:34px; font-size:12px; color:#c0cce0; display:flex; gap:8px; align-items:flex-start;"><span style="color:var(--col-a); font-weight:800; flex-shrink:0;">→</span><span>Warum willst du dir noch was Neues aufbauen?</span><button class="copy-btn" style="position:absolute;right:0;top:0;" id="ct_7e468811" onclick="copyById(this.id, this)">⧉</button></div>
+              </div>
+            </div>
+            <div class="msg-group" style="margin-top:12px;">
+              <div class="msg-row you">
+                <div class="msg-label">Du nach der Antwort</div>
+                <div class="bubble-wrap">
+                  <div class="avatar">✏️</div>
+                  <div class="bubble">Alles klar, verstehe. 😊 Darf ich fragen, was du aktuell so machst?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Pfad B -->
+        <div style="border:1px solid rgba(140,80,200,0.25); border-radius:8px; overflow:hidden;">
+          <div style="background:rgba(140,80,200,0.1); padding:8px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid rgba(140,80,200,0.2);">
+            <span style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--col-b);">Pfad B</span>
+            <span style="font-size:11px; color:var(--muted);">Noch keine Erfahrung</span>
+          </div>
+          <div style="padding:14px;">
+            <div class="msg-group">
+              <div class="msg-row you">
+                <div class="msg-label">Du</div>
+                <div class="bubble-wrap">
+                  <div class="avatar">✏️</div>
+                  <div class="bubble">Alles klar, kein Problem – jeder fängt mal irgendwo an! 😊 Darf ich fragen, was du aktuell so machst?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="merge-row" style="margin-top:14px;">
+          <span class="merge-pill">Beide Pfäde → weiter zu Step 3</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ STEP 3 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">3</div>
+        <div class="step-title-area">
+          <div class="step-title">Pain Digging</div>
+          <div class="step-subtitle">Den echten Grund herausfinden, beide Pfade ab hier gemeinsam</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Anschluss (nach Berufsantwort aus Step 2A oder 2B)</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Und was ist denn eigentlich der Grund dafür, dass du dir was aufbauen möchtest? Was stört dich aktuell an deiner Situation?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="branch-split">
+          <div class="split-label-row">
+            <div style="text-align:center"><span class="split-label a">A, Offen antwortet</span></div>
+            <div style="text-align:center"><span class="split-label b">B, Einsilbig / nur „Geld"</span></div>
+          </div>
+          <div class="branch-cols">
+            <div class="branch-col a">
+              <h4>Offen &amp; motiviert</h4>
+              <p>Kurz bestätigen, Interesse zeigen.</p>
+              <div class="branch-next" style="color:var(--col-a); font-size:10px; letter-spacing:1px; text-transform:uppercase; margin-top:6px; font-weight:800;">→ Direkt zu Step 4</div>
+            </div>
+            <div class="branch-col b">
+              <h4>Einsilbig / nur „Geld"</h4>
+              <p>Kurz nachhaken:</p>
+              <p style="margin-top:5px; font-style:italic; color:#d0e0f0; font-size:11px;">„Was willst du dir mit XY ermöglichen?"</p>
+              <div class="branch-next" style="color:var(--col-b); font-size:10px; letter-spacing:1px; text-transform:uppercase; margin-top:6px; font-weight:800;">→ Weiter Step 4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-line"></div>
+
+    <!-- ═══ STEP 4 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">4</div>
+        <div class="step-title-area">
+          <div class="step-title">Überleitung zum Video</div>
+          <div class="step-subtitle">Nummer holen über WhatsApp</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Anschluss (nach Pain Digging aus Step 3)</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Das kann ich absolut verstehen. 😊 Sag mal, weißt du denn schon worum es bei uns geht, oder was wir machen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="branch-split" style="margin-bottom:14px">
+          <div class="split-label-row">
+            <div style="text-align:center"><span class="split-label a">A, Ja, weiß es</span></div>
+            <div style="text-align:center"><span class="split-label b">B, Nein</span></div>
+          </div>
+          <div class="branch-cols">
+            <div class="branch-col a">
+              <h4>Weiß es schon</h4>
+              <p>Kurz erklären lassen → trotzdem Video schicken.</p>
+            </div>
+            <div class="branch-col b">
+              <h4>Kennt es nicht</h4>
+              <p>Direkt zur Hauptnachricht unten.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Hauptnachricht (für beide Wege)</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Kein Problem, genau dafür haben wir ein Trainingsvideo erstellt, wo wir dir das alles Schritt für Schritt erklären. Ich würde dir das gerne zuschicken, leider kann ich das über TikTok nicht machen, deswegen würde ich es dir gerne über WhatsApp schicken. Dafür bräuchte ich kurz deine WhatsApp-Nummer. 📲
+
+Wann hättest du Zeit, dir das Video anzuschauen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice red">
+          <span class="notice-ico">⚠️</span>
+          <div>
+            Verweigert die Nummer?
+            <div><button class="hilfe-jump" onclick="goToHilfe(3)">🛡️ Hilfe 3 direkt öffnen</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-line"></div>
+
+    <!-- ═══ STEP 5 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">5</div>
+        <div class="step-title-area">
+          <div class="step-title">Video schicken</div>
+          <div class="step-subtitle">Sofort per WhatsApp, nicht über TikTok</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="notice gold" style="margin-top:0; margin-bottom:14px">
+          <span class="notice-ico">✅</span>
+          <span>Sobald Nummer + Zeitpunkt da sind → <strong>Video SOFORT per WhatsApp schicken.</strong> Nicht warten!</span>
+        </div>
+
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Anschluss (nachdem die Nummer da ist)</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Perfekt, danke! 🙏 Ich schicke dir das Video jetzt direkt rüber. 📲 Schreib mir kurz Bescheid wenn du es dir angeschaut hast, dann können wir alles weitere klären. 😊<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice red">
+          <span class="notice-ico">⏳</span>
+          <div>
+            Keine Reaktion auf das Video?
+            <div><button class="hilfe-jump" onclick="goToSection('followup')">🛡️ Teil 3 Follow-Up öffnen</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-line"></div>
+
+    <!-- Platform switch: WhatsApp -->
+    <div style="display:flex; align-items:center; gap:10px; margin: 8px 0 10px; padding: 0 2px;">
+      <div style="height:1px; flex:1; background:linear-gradient(to right, transparent, rgba(37,211,102,0.3));"></div>
+      <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(37,211,102,0.08); border:1px solid rgba(37,211,102,0.3); border-radius:20px; padding:5px 14px;">
+        <span style="font-size:14px;">📲</span>
+        <span style="font-size:11px; font-weight:700; color:#4cd97a; letter-spacing:0.5px;">Ab jetzt läuft alles über WhatsApp</span>
+      </div>
+      <div style="height:1px; flex:1; background:linear-gradient(to left, transparent, rgba(37,211,102,0.3));"></div>
+    </div>
+
+    <!-- ═══ STEP 6 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">6</div>
+        <div class="step-title-area">
+          <div class="step-title">Feedback &amp; Termin einleiten</div>
+          <div class="step-subtitle">Commitment abholen, wichtigster Schritt</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Nachricht 1 (Feedback abholen)</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Hey, wie hat dir das Trainingsvideo gefallen? 😊 Was hat dir da besonders gut gefallen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="msg-group" style="margin-top:10px">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Nachricht 2 (nach kurzem Eingehen auf das Feedback)</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Perfekt, freut mich wirklich! 😊 Du, pass auf, im nächsten Schritt könnte ich den Bewerbungsprozess für dich einleiten. Aber das muss ich dir vorher klar sagen: Jeder hat wirklich nur ein einziges Mal eine Chance auf dieses Vorqualifikationsgespräch. Sollte der Termin nicht wahrgenommen, abgesagt oder verschoben werden, gibt es leider keine zweite Chance mehr. Dann können wir gerne nochmal sprechen, aber nur für das normale Programm auf eigene Kosten. Kannst du das so nachvollziehen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="branch-split">
+          <div class="split-label-row">
+            <div style="text-align:center"><span class="split-label a">A, Versteht es</span></div>
+            <div style="text-align:center"><span class="split-label b">B, Zögert</span></div>
+          </div>
+          <div class="branch-cols">
+            <div class="branch-col a">
+              <h4>Versteht &amp; ist dabei</h4>
+              <div class="branch-next">→ Weiter Step 7</div>
+            </div>
+            <div class="branch-col b">
+              <h4>Zögert / unsicher</h4>
+              <button class="hilfe-jump" onclick="goToHilfe(4)" style="margin-top:6px; margin-bottom:4px">🛡️ Hilfe 4 öffnen</button>
+              <button class="hilfe-jump" onclick="goToHilfe(14)">🛡️ Hilfe 14 öffnen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-line"></div>
+
+    <!-- ═══ STEP 7 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">7</div>
+        <div class="step-title-area">
+          <div class="step-title">Termin festlegen</div>
+          <div class="step-subtitle">Konkreten Slot sichern</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Anschluss (nach Ja in Step 6)</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Sehr gut! 😊 Wann hättest du denn die nächsten Tage kurz Zeit? Schlag mir einfach ein paar Zeiten vor, die dir passen.<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="msg-group" style="margin-top:10px">
+          <div class="msg-row you">
+            <div class="msg-label">Du, nach der Antwort des Leads</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Wird [TAG] um [UHRZEIT] zu 100% für dich passen? Top, dann trage ich das direkt ein. Ich brauche noch kurz deinen vollen Namen. 📋<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-line"></div>
+
+    <!-- ═══ STEP 8 ═══ -->
+    <div class="step-card">
+      <div class="step-top">
+        <div class="step-num-badge">8</div>
+        <div class="step-title-area">
+          <div class="step-title">Abschluss</div>
+          <div class="step-subtitle">Intern dokumentieren + Bestätigung schicken</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="msg-group">
+          <div class="msg-row you">
+            <div class="msg-label">Du, Abschlussnachricht</div>
+            <div class="bubble-wrap">
+              <div class="avatar">✏️</div>
+              <div class="bubble">Alles klar! ✔️ Ich hab dich für [TAG] um [UHRZEIT] eingetragen. Du bekommst gleich eine WhatsApp von meinem Kollegen aus dem Team. 📲 Er schickt dir deine Terminbestätigung, einfach kurz bestätigen sobald sie ankommt. 😊 Ich wünsche dir jetzt schon viel Erfolg!<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="intern-box">
+          <strong>📋 Intern, nach dem Chat</strong>
+          <ol>
+            <li>Screenshot vom Chat machen</li>
+            <li>Name + Termin eintragen</li>
+            <li>Terminbestätigung per WhatsApp schicken</li>
+            <li>Terminbestätigung in Discord schicken</li>
+            <li>Kalender eintragen</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end steps-wrap -->
+</div><!-- end tab-main -->
+<div class="tab-panel" id="tab-help">
+
+  <div class="notice gold" style="margin-top:0; margin-bottom:4px">
+    <span class="notice-ico">🛡️</span>
+    <span>Einwandbehandlungen, klicke auf einen Eintrag um ihn aufzuklappen. Über die Links im Hauptskript kommst du direkt zur richtigen Hilfe.</span>
+  </div>
+
+  <!-- TEIL 1 -->
+  <div class="sec-head">
+    <h2>Was kostet das?</h2><span>Kommt immer, zwei Möglichkeiten vorstellen</span>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-0">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">0</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Was kostet das?" / „Wie läuft das ab?"</div>
+        <div class="hilfe-kontext">Kommt früh im Chat, immer mit den zwei Möglichkeiten antworten</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort, Zwei Möglichkeiten vorstellen</div>
+        Es gibt bei uns grundsätzlich zwei Möglichkeiten:
+
+Möglichkeit 1: Du machst das Ganze auf eigene Faust, zahlst den normalen Preis und läufst als klassischer Kunde.
+
+Möglichkeit 2: Wir gehen eine Partnerschaft ein. Das bedeutet, wir nehmen dich nicht als Kunden auf, sondern als Partner. Wir investieren gemeinsam Zeit und Ressourcen in deinen Aufbau. Dafür nehmen wir jeden Monat exklusiv nur 7 Personen an.
+
+Was davon klingt für dich interessanter?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+      <div style="background:var(--bg3); border:1px solid var(--border2); border-radius:8px; padding:13px 15px; margin-top:10px;">
+        <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:10px;">Wenn Lead sagt: "Möglichkeit 2 klingt interessant"</div>
+        <div class="antwort-box" style="margin-top:0; background:transparent; border:none; border-left:3px solid var(--golddk); padding:10px 12px; padding-right:44px;">
+          <div class="antwort-label">✏️ Anschluss</div>
+          Das kann ich auch nachvollziehen, würde mich in deiner Situation genauso viel mehr interessieren als die erste Möglichkeit. 😊
+
+Der Nachteil dabei ist nur, dass wir monatlich maximal 7 Leute aufnehmen können. Anders würde es vorne und hinten einfach nicht funktionieren.
+
+Deswegen würde ich vorschlagen, dass wir uns die nächsten Tage mal kurz zusammensetzen, dann erkläre ich dir genau, was wir machen, und wir schauen gemeinsam ob das für dich passt. Wollen wir das so machen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin:20px 0">
+
+  <!-- TEIL 2 -->
+  <div class="sec-head">
+    <h2>Einwände</h2><span>Häufigste Ausreden &amp; deine Antworten</span>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-1">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">1</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Wozu die Fragen? Ich will nur das Video."</div>
+        <div class="hilfe-kontext">Ungeduldig aber interessiert</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Versteh ich total, das Video ist auch echt stark. Nur: Wir geben es nur raus, wenn wir grob einschätzen können, ob das überhaupt zu dir passt. Wir nehmen uns Zeit für jeden einzelnen, deswegen stellen wir vorher ein paar einfache Fragen, um uns erstmal ein Bild von dir zu machen.<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-2">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">2</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Ich will keine Fragen beantworten."</div>
+        <div class="hilfe-kontext">Verschlossen, Verständnis zeigen und Grund erklären</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Kann ich absolut nachvollziehen, wenn du jetzt keine Fragen beantworten möchtest und vielleicht auch ein bisschen skeptisch bist. Du musst verstehen, dass wir als Unternehmen natürlich wissen müssen, ob wir dir weiterhelfen können, genau deswegen stellen wir auch die Fragen. Wenn wir dir nicht helfen können, macht es ja gar keinen Sinn, dir das Video rauszusenden, geschweige denn irgendwie zu schauen, ob eine Zusammenarbeit passt. Verstehst du? Genau deswegen stellen wir die Fragen.<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-3">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">3</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Ich will meine Nummer nicht rausgeben."</div>
+        <div class="hilfe-kontext">Verweigert Nummer, logisch erklären</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Verständlich. Deine Nummer ist wichtig, weil wir dir die Terminbestätigung und unser Trainingsvideo direkt per WhatsApp schicken. Ohne das funktioniert der Prozess leider nicht. Und wenn du mal ganz logisch darüber nachdenkst, das Schlimmste was ich mit deiner Nummer anstellen kann, ist sie weiterzugeben. Aber das kannst du ja auch mit meiner Nummer machen, sobald ich dich angeschrieben habe. 😊<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-4">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">4</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Wozu brauche ich einen Termin?"</div>
+        <div class="hilfe-kontext">Hinterfragt den Sinn, klar erklären</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Damit du nicht einfach irgendein Video bekommst, sondern einen klaren Plan, der wirklich auf dich passt. Der Termin hilft dir rauszufinden, wie du starten kannst, nicht ob es irgendwann mal interessant wäre. Selbst der beste Schritt-für-Schritt-Plan bringt dir ohne den passenden Experten eher nichts, da du garantiert Fehler machen wirst. Oder würdest du sagen, nur YouTube-Videos schauen und Bücher lesen reicht? 😂<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-5">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">5</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Ich bin skeptisch bei Online-Business."</div>
+        <div class="hilfe-kontext">Skepsis anerkennen, neugierig machen</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Versteh ich total. Die meisten, die heute durchgestartet sind, waren am Anfang skeptisch. Genau deswegen gibt's das Video und den Termin, damit du Klarheit bekommst, ob das hier für dich funktioniert oder nicht., Hast du bisher schlechte Erfahrungen gemacht oder woher kommt der Gedanke?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-6">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">6</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Wenn du mir sagst, dass ich was investieren muss, bin ich weg."</div>
+        <div class="hilfe-kontext">Geld-Einwand, kurz erklären, dann zwei Möglichkeiten vorstellen</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Ich kann dir kurz mal erklären, wie das Ganze bei uns überhaupt läuft, dann macht die Frage viel mehr Sinn. Es gibt bei uns grundsätzlich zwei Möglichkeiten:
+
+Möglichkeit 1: Du machst das Ganze auf eigene Faust, zahlst den normalen Preis und läufst als klassischer Kunde.
+
+Möglichkeit 2: Wir gehen eine Partnerschaft ein. Das bedeutet, wir nehmen dich nicht als Kunden auf, sondern als Partner. Wir investieren gemeinsam Zeit und Ressourcen in deinen Aufbau. Dafür nehmen wir jeden Monat exklusiv nur 7 Personen an.
+
+Was davon klingt für dich interessanter?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+      <div style="background:var(--bg3); border:1px solid var(--border2); border-radius:8px; padding:12px 14px; margin-top:10px;">
+        <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Wenn Lead sagt: „Möglichkeit 2 klingt interessant"</div>
+        <div class="antwort-box" style="margin:0; background:transparent; border:none; border-left:3px solid var(--golddk); padding:10px 44px 10px 12px;">
+          <div class="antwort-label">✏️ Anschluss</div>
+          Das kann ich absolut nachvollziehen, würde mich in deiner Situation genauso viel mehr interessieren. 😊 Der Nachteil dabei ist nur, dass wir monatlich maximal 7 Leute aufnehmen können, anders würde es vorne und hinten einfach nicht funktionieren.
+
+Deswegen würde ich vorschlagen, dass wir uns die nächsten Tage kurz zusammensetzen, ich erkläre dir genau was wir machen, und wir schauen ob das für dich passt. Wollen wir das so machen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+        </div>
+      </div>
+      <div style="background:rgba(232,200,74,0.05); border:1px dashed rgba(232,200,74,0.25); border-radius:6px; padding:9px 13px; margin-top:10px; font-size:12px; color:#c8b030;">
+        <strong style="display:block; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:3px;">📌 Wichtig</strong>
+        Je nach Step: Video-Pitch oder direkt Termin-Pitch einbauen.
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-7">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">7</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Das ist doch eh Scam."</div>
+        <div class="hilfe-kontext">Direkten Vorwurf sachlich entkräften</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Würd ich genauso denken, wenn ich auf TikTok was sehe. Deshalb kriegst du bei uns nicht einfach was blind geschickt, sondern bekommst vorher einen Termin, um alle Fragen zu klären. Danach entscheidest du selbst, du wirst genug Materialien (Erfolgsstorys mit echten Menschen, Interviews, Beweise) bekommen, um dich zu informieren, und genug Zeit, um sicherzustellen, dass es kein Scam ist. Hast du bisher schlechte Erfahrungen gemacht oder woher kommt der Gedanke?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-8">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">8</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Um was geht es bei euch?"</div>
+        <div class="hilfe-kontext">Kurz erklären, dann Video-Pitch wie im Hauptskript</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Du kannst dir vorstellen, dass du zielgruppenbasierte Accounts für Unternehmen auf Social Media betreibst und darüber Leads für das Unternehmen gewinnst. Das Unternehmen gewinnt dadurch neue Kunden, und du wirst dafür bezahlt.
+
+Da ich das hier im Chat nicht richtig ausführen kann, haben wir aber dafür extra ein Video aufgenommen, wo das Ganze erklärt wird. Ich würde dir das gerne schicken, leider kann ich das nicht über TikTok machen, deswegen würde ich es dir gerne per WhatsApp schicken. Dafür bräuchte ich kurz deine WhatsApp-Nummer. 📲
+
+Und wann hättest du ein bisschen Zeit, dir das anzuschauen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-9">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">9</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Wie soll ich sicher sein, dass du kein Fake bist?"</div>
+        <div class="hilfe-kontext">Vertrauen aufbauen, zum Termin führen</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Genau dafür gibt's ja vorher das Video und den Termin, damit du dir selbst ein Bild machen kannst. Und spätestens im Gespräch wirst du merken, dass alles real ist.<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-10">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">10</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Und was hast du davon?"</div>
+        <div class="hilfe-kontext">Ehrlich antworten, dann zwei Möglichkeiten erklären</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Gute Frage, ich erkläre dir kurz wie das bei uns läuft, dann macht das auch direkt Sinn.
+
+Es gibt bei uns grundsätzlich zwei Möglichkeiten:
+
+Möglichkeit 1: Du machst das Ganze auf eigene Faust, zahlst den normalen Preis und läufst als klassischer Kunde.
+
+Möglichkeit 2: Wir gehen eine Partnerschaft ein. Das bedeutet, wir nehmen dich nicht als Kunden auf, sondern als Partner. Wir investieren gemeinsam Zeit und Ressourcen in deinen Aufbau. Dafür nehmen wir jeden Monat exklusiv nur 7 Personen an.
+
+Was davon klingt für dich interessanter?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+      <div style="background:var(--bg3); border:1px solid var(--border2); border-radius:8px; padding:12px 14px; margin-top:10px;">
+        <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Wenn Lead sagt: „Möglichkeit 2 klingt interessant"</div>
+        <div class="antwort-box" style="margin:0; background:transparent; border:none; border-left:3px solid var(--golddk); padding:10px 44px 10px 12px;">
+          <div class="antwort-label">✏️ Anschluss</div>
+          Das kann ich absolut nachvollziehen, würde mich in deiner Situation genauso viel mehr interessieren. 😊 Der Nachteil dabei ist nur, dass wir monatlich maximal 7 Leute aufnehmen können, anders würde es vorne und hinten einfach nicht funktionieren.
+
+Deswegen würde ich vorschlagen, dass wir uns die nächsten Tage kurz zusammensetzen, ich erkläre dir genau was wir machen, und wir schauen ob das für dich passt. Wollen wir das so machen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hilfe-card" id="hilfe-11">
+    <div class="hilfe-header" onclick="toggleH(this)">
+      <div class="hilfe-num">11</div>
+      <div class="hilfe-title-wrap">
+        <div class="hilfe-einwand">„Wie viel Startkapital brauche ich?"</div>
+        <div class="hilfe-kontext">Nicht auf Zahlen eingehen, zwei Möglichkeiten erklären</div>
+      </div>
+      <div class="hilfe-chevron">▾</div>
+    </div>
+    <div class="hilfe-body">
+      <div class="antwort-box">
+        <div class="antwort-label">✏️ Deine Antwort</div>
+        Das hängt davon ab, welchen Weg du gehst, und da gibt es bei uns zwei Möglichkeiten:
+
+Möglichkeit 1: Du machst das Ganze auf eigene Faust, zahlst den normalen Preis und läufst als klassischer Kunde.
+
+Möglichkeit 2: Wir gehen eine Partnerschaft ein. Das bedeutet, wir nehmen dich nicht als Kunden auf, sondern als Partner. Wir investieren gemeinsam Zeit und Ressourcen in deinen Aufbau. Dafür nehmen wir jeden Monat exklusiv nur 7 Personen an.
+
+Was davon klingt für dich interessanter?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+      </div>
+      <div style="background:var(--bg3); border:1px solid var(--border2); border-radius:8px; padding:12px 14px; margin-top:10px;">
+        <div style="font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Wenn Lead sagt: „Möglichkeit 2 klingt interessant"</div>
+        <div class="antwort-box" style="margin:0; background:transparent; border:none; border-left:3px solid var(--golddk); padding:10px 44px 10px 12px;">
+          <div class="antwort-label">✏️ Anschluss</div>
+          Das kann ich absolut nachvollziehen, würde mich in deiner Situation genauso viel mehr interessieren. 😊 Der Nachteil dabei ist nur, dass wir monatlich maximal 7 Leute aufnehmen können, anders würde es vorne und hinten einfach nicht funktionieren.
+
+Deswegen würde ich vorschlagen, dass wir uns die nächsten Tage kurz zusammensetzen, dann erkläre ich dir genau, was wir machen, und wir schauen ob das für dich passt. Wollen wir das so machen?<button class="copy-btn" onclick="copyBubble(this)">⧉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TEIL 3, FOLLOW UP -->
+  <div class="sec-head" id="followup"><h2>Follow-Up</h2><span>Max. 3 Nachrichten, danach nicht mehr kontaktieren</span></div>
+
+  <div class="notice gold" style="margin-bottom:12px">
+    <span class="notice-ico">⚠️</span>
+    <span><strong>Max. 3 Follow-Ups.</strong> Danach nicht weiter schreiben.</span>
+  </div>
+
+  <div class="fup-row">
+    <div class="fup-when">Nach 24h</div>
+    <div class="fup-msg">Hey, wollte kurz nachfragen ob du dazu gekommen bist das Video anzuschauen? 😊<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+  </div>
+  <div class="fup-row">
+    <div class="fup-when">Nach 48h</div>
+    <div class="fup-msg">Hey, kein Stress, falls du Fragen zum Video hast bin ich da. Soll ich dir kurz ein paar Infos schicken?<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+  </div>
+  <div class="fup-row">
+    <div class="fup-when">Tag vor Termin</div>
+    <div class="fup-msg">Kurze Erinnerung, morgen um [UHRZEIT] ist dein Termin. Passt das noch? 😊<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+  </div>
+  <div class="fup-row">
+    <div class="fup-when">Letzter Versuch</div>
+    <div class="fup-msg">Hey, ich mach das jetzt nicht weiter, falls du irgendwann Interesse hast melde dich einfach. Alles Gute! 👋<button class="copy-btn" onclick="copyBubble(this)">⧉</button></div>
+  </div>
+
+  <hr class="divider">
+
+
+</div><!-- end tab-help -->
+</div>
+
+<script>
+
+var TEXTS = {
+  'ct_d874d8c7': 'Wie lief das so? Was hat nicht funktioniert?',
+  'ct_1997d367': 'Was hat dir daran nicht gefallen?',
+  'ct_dd89529f': 'Warum hast du damit aufgeh\u00f6rt?',
+  'ct_b1ba8a0c': 'Machst du das hauptberuflich gerade?',
+  'ct_7e468811': 'Warum willst du dir jetzt noch was Neues nebenbei aufbauen?'
+};
+
+function showTab(id) {
+  ['main','help'].forEach(function(t) {
+    document.getElementById('tab-'+t).style.display = t===id ? 'block' : 'none';
+    var b = document.getElementById('btn-'+t);
+    if (b) b.className = 'tab-btn' + (t===id ? ' active' : '');
+  });
+}
+
+function toggleH(header) {
+  var card = header.closest('.hilfe-card');
+  if (card) card.classList.toggle('open');
+}
+
+function goToHilfe(num) {
+  showTab('help');
+  setTimeout(function() {
+    var card = document.getElementById('hilfe-'+num);
+    if (!card) return;
+    card.classList.add('open');
+    card.scrollIntoView({behavior:'smooth',block:'start'});
+  }, 50);
+}
+
+function goToSection(id) {
+  showTab('help');
+  setTimeout(function() {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }, 50);
+}
+
+function showCopied(btn) {
+  if (!btn) return;
+  var orig = btn.innerHTML;
+  btn.innerHTML = '\u2713';
+  btn.style.color = '#2ecc71';
+  setTimeout(function() { btn.innerHTML = orig; btn.style.color = ''; }, 1500);
+}
+function copyText(text, btn) {
+  try {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;left:0;top:0;opacity:0;font-size:16px;';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopied(btn);
+  } catch(e) {
+    try { document.body.removeChild(ta); } catch(e2) {}
+    try {
+      navigator.clipboard.writeText(text).then(function() {
+        showCopied(btn);
+      }).catch(function(){});
+    } catch(e3) {}
+  }
+}
+
+function copyById(id, btn) {
+  if (TEXTS[id]) copyText(TEXTS[id], btn);
+}
+
+function copyBubble(btn) {
+  var parent = btn.parentElement;
+  var clone = parent.cloneNode(true);
+  clone.querySelectorAll('.copy-btn,.antwort-label').forEach(function(el){el.remove();});
+  copyText(clone.innerText.trim(), btn);
+}
+
+// Init
+try { document.getElementById('tab-main').style.display = 'block'; document.getElementById('tab-help').style.display = 'none'; } catch(e) {}
+
+</script>
+</body>
+</html>
